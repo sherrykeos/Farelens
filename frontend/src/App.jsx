@@ -11,6 +11,7 @@ import VerifyEmail from './components/auth/VerifyEmail';
 import LandingPage from './components/LandingPage';
 import FeaturesPage from './components/FeaturesPage';
 import WorkingPage from './components/WorkingPage';
+import AboutPage from './components/AboutPage';
 import Dashboard from './components/Dashboard';
 import PricePrediction from './components/PricePrediction';
 import FareCalendar from './components/FareCalendar';
@@ -159,6 +160,7 @@ function App() {
                     <Route path="/" element={<HomeRoute />} />
                     <Route path="/features" element={<FeaturesPage />} />
                     <Route path="/working" element={<WorkingPage />} />
+                    <Route path="/about" element={<AboutPage />} />
                     <Route path="/*" element={<ProtectedRoute><AppShell /></ProtectedRoute>} />
                 </Routes>
             </BrowserRouter>

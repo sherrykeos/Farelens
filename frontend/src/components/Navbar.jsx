@@ -14,8 +14,9 @@ const Navbar = () => {
                     <span className="text-xl font-extrabold text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">FareLens</span>
                 </Link>
                 <nav className="hidden sm:flex items-center gap-8 text-sm font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
-                    <Link to="/features" className="hover:text-primary-light transition-colors duration-300">Features</Link>
+                    <a href="/#features" className="hover:text-primary-light transition-colors duration-300">Features</a>
                     <Link to="/working" className="hover:text-primary-light transition-colors duration-300">How it Works</Link>
+                    <Link to="/about" className="hover:text-primary-light transition-colors duration-300">About Us</Link>
                     {/* "Dashboard" intentionally goes to /login, not a public page — it's
                         the real authenticated dashboard, so it has to go through auth first.
                         PublicOnlyRoute then sends a logged-in user straight to "/", which
@@ -25,7 +26,7 @@ const Navbar = () => {
                 {/* Figma spec: width 160 / height 52 / radius 48 / border 1px / opacity 1 */}
                 <Link
                     to="/login"
-                    className="flex items-center justify-center w-38 h-10 rounded-[48px] border border-white/40 bg-white/15 text-white font-semibold backdrop-blur-[10px] hover:bg-white/25 transition-colors duration-300"
+                    className="flex items-center justify-center w-38 h-10 rounded-[48px] border border-cyan-300/50 bg-cyan-400/10 text-cyan-100 font-semibold backdrop-blur-[10px] hover:bg-cyan-400/20 hover:border-cyan-300/70 hover:shadow-[0_0_14px_rgba(103,232,249,0.25)] transition-all duration-300"
                 >
                     Login / SignUp
                 </Link>

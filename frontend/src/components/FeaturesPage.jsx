@@ -1,6 +1,6 @@
 import React from 'react';
 import { Sparkles, Bell, Brain, CalendarDays } from 'lucide-react';
-import PublicLayout from './PublicLayout';
+import PublicLayout from './Footer';
 
 const features = [
     {

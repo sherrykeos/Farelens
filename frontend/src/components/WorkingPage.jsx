@@ -1,5 +1,5 @@
 import React from 'react';
-import PublicLayout from './PublicLayout';
+import PublicLayout from './Footer';
 
 const steps = [
     { n: '01', title: 'Search a route', text: 'Pick your source, destination, class, and travel date.' },
