@@ -7,6 +7,9 @@ class Settings(BaseSettings):
     # Comma-separated list, e.g. "http://localhost:3000,https://yourapp.vercel.app"
     cors_origins: str = "http://localhost:3000"
     model_version: str = "v1.0.0"
+    # How often the in-app scheduler re-checks watchlists against price_history
+    # and sends digest alert emails. 0 disables the scheduler entirely.
+    alert_check_interval_hours: float = 6
 
     model_config = SettingsConfigDict(env_file=".env", extra="ignore")
 

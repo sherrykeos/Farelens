@@ -2,10 +2,11 @@ import json
 from pathlib import Path
 
 import pandas as pd
+import shap
 from xgboost import XGBRegressor
 
 from app.ml.features import FEATURE_COLUMNS, FeaturePipeline
-from app.schemas.predict import PredictRequest, PredictResponse
+from app.schemas.predict import PredictRequest, PredictResponse, ShapContribution
 
 ARTIFACTS_DIR = Path(__file__).resolve().parents[1] / "ml" / "artifacts"
 MODEL_PATH = ARTIFACTS_DIR / "model.json"
@@ -32,6 +33,7 @@ class PredictionService:
         self.metadata = json.loads(METADATA_PATH.read_text(encoding="utf-8"))
         self.mae = self.metadata["metrics"]["mae"]
         self.numeric_stats = self.metadata["numeric_feature_stats"]
+        self.explainer = shap.TreeExplainer(self.model)
 
     def _is_out_of_distribution(self, duration: float, days_left: int) -> bool:
         for value, key in [(duration, "duration"), (days_left, "days_left")]:
@@ -61,13 +63,48 @@ class PredictionService:
         is_ood = self._is_out_of_distribution(request.duration, request.days_left)
         margin = self.mae * (2.0 if is_ood else 1.0)
 
+        base_value, contributions, other_impact = self._explain(encoded)
+
         return PredictResponse(
             predicted_price=round(predicted_price, 2),
             confidence_low=round(max(predicted_price - margin, 0), 2),
             confidence_high=round(predicted_price + margin, 2),
             model_version=self.metadata["model_version"],
             out_of_distribution=is_ood,
+            base_value=base_value,
+            shap_contributions=contributions,
+            other_features_impact=other_impact,
         )
+
+    def _explain(
+        self, encoded: pd.DataFrame, top_n: int = 5
+    ) -> tuple[float, list[ShapContribution], float]:
+        """Per-request SHAP values: how much each feature pushed THIS price
+        up or down from the model's baseline — not training-time global
+        importance (that's what /model/info returns).
+
+        Returns (base_value, top_n_contributions, sum_of_remaining_contributions)
+        so base_value + sum(all contributions) + other_features_impact always
+        reconstructs predicted_price exactly — the UI can show a real
+        waterfall instead of floating, unanchored numbers.
+        """
+        shap_values = self.explainer.shap_values(encoded)[0]
+        expected_value = self.explainer.expected_value
+        base_value = float(
+            expected_value[0] if hasattr(expected_value, "__len__") else expected_value
+        )
+
+        ranked = sorted(
+            zip(encoded.columns, shap_values), key=lambda kv: abs(kv[1]), reverse=True
+        )
+        top = ranked[:top_n]
+        rest = ranked[top_n:]
+        other_impact = round(float(sum(value for _, value in rest)), 2)
+
+        contributions = [
+            ShapContribution(feature=name, impact=round(float(value), 2)) for name, value in top
+        ]
+        return base_value, contributions, other_impact
 
 
 _service: PredictionService | None = None

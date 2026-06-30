@@ -55,3 +55,21 @@ def test_predict_flags_out_of_distribution_duration(client, valid_predict_payloa
     response = client.post("/api/v1/predict", json=payload)
     assert response.status_code == 200
     assert response.json()["out_of_distribution"] is True
+
+
+def test_predict_includes_shap_contributions(client, valid_predict_payload):
+    response = client.post("/api/v1/predict", json=valid_predict_payload)
+    body = response.json()
+    assert len(body["shap_contributions"]) == 5
+    for contribution in body["shap_contributions"]:
+        assert "feature" in contribution
+        assert "impact" in contribution
+
+
+def test_predict_shap_waterfall_reconstructs_predicted_price(client, valid_predict_payload):
+    """base_value + sum(top-N contributions) + other_features_impact must
+    equal predicted_price exactly — otherwise the UI's waterfall is lying."""
+    response = client.post("/api/v1/predict", json=valid_predict_payload)
+    body = response.json()
+    total = body["base_value"] + sum(c["impact"] for c in body["shap_contributions"]) + body["other_features_impact"]
+    assert round(total, 2) == round(body["predicted_price"], 2)

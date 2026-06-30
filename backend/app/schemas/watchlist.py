@@ -2,12 +2,13 @@ from datetime import datetime
 
 from pydantic import BaseModel, Field, field_validator
 
-from app.schemas.predict import City
+from app.schemas.predict import City, FlightClass
 
 
 class WatchlistCreate(BaseModel):
     source_city: City
     destination_city: City
+    flight_class: FlightClass = FlightClass.Economy
     target_price: float = Field(gt=0, le=200_000)
 
     @field_validator("destination_city")
@@ -23,6 +24,7 @@ class WatchlistResponse(BaseModel):
     id: int
     source_city: str
     destination_city: str
+    flight_class: str
     target_price: float
     created_at: datetime
 

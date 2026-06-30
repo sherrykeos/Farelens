@@ -63,6 +63,11 @@ class PredictRequest(BaseModel):
         return v
 
 
+class ShapContribution(BaseModel):
+    feature: str
+    impact: float  # positive = pushed price up, negative = pushed price down
+
+
 class PredictResponse(BaseModel):
     predicted_price: float
     currency: str = "INR"
@@ -70,3 +75,8 @@ class PredictResponse(BaseModel):
     confidence_high: float
     model_version: str
     out_of_distribution: bool
+    # SHAP waterfall: base_value + sum(shap_contributions) + other_features_impact
+    # reconstructs predicted_price exactly — see app/services/prediction.py.
+    base_value: float
+    shap_contributions: list[ShapContribution]
+    other_features_impact: float

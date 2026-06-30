@@ -1,3 +1,4 @@
+import hashlib
 import os
 from datetime import datetime, timedelta, timezone
 
@@ -19,6 +20,10 @@ if os.getenv("ENV") == "production" and SECRET_KEY == _DEV_DEFAULT_SECRET:
     )
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 60 * 24  # 24h, fine for a portfolio project
+PASSWORD_RESET_EXPIRE_MINUTES = 15
+PASSWORD_RESET_TOKEN_TYPE = "password_reset"
+EMAIL_VERIFICATION_EXPIRE_MINUTES = 60 * 24  # 24h to click the link
+EMAIL_VERIFICATION_TOKEN_TYPE = "email_verification"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/api/v1/auth/login", auto_error=False)
 
@@ -50,6 +55,66 @@ def decode_access_token(token: str) -> str:
             detail="Invalid or expired authentication token",
             headers={"WWW-Authenticate": "Bearer"},
         )
+
+
+def _password_fingerprint(hashed_password: str) -> str:
+    """Short digest of the current password hash, embedded in reset tokens
+    so a token automatically stops working the instant the password is
+    changed — no separate token-revocation table needed."""
+    return hashlib.sha256(hashed_password.encode("utf-8")).hexdigest()[:16]
+
+
+def create_password_reset_token(user: User) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(minutes=PASSWORD_RESET_EXPIRE_MINUTES)
+    payload = {
+        "sub": user.email,
+        "type": PASSWORD_RESET_TOKEN_TYPE,
+        "pwd_fp": _password_fingerprint(user.hashed_password),
+        "exp": expire,
+    }
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def verify_password_reset_token(token: str, user: User) -> bool:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    except JWTError:
+        return False
+    if payload.get("type") != PASSWORD_RESET_TOKEN_TYPE:
+        return False
+    if payload.get("sub") != user.email:
+        return False
+    if payload.get("pwd_fp") != _password_fingerprint(user.hashed_password):
+        return False
+    return True
+
+
+def get_password_reset_email(token: str) -> str | None:
+    """Extract the email claim without verifying the fingerprint (the
+    fingerprint check needs the user record, looked up by this email)."""
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    except JWTError:
+        return None
+    if payload.get("type") != PASSWORD_RESET_TOKEN_TYPE:
+        return None
+    return payload.get("sub")
+
+
+def create_email_verification_token(email: str) -> str:
+    expire = datetime.now(timezone.utc) + timedelta(minutes=EMAIL_VERIFICATION_EXPIRE_MINUTES)
+    payload = {"sub": email, "type": EMAIL_VERIFICATION_TOKEN_TYPE, "exp": expire}
+    return jwt.encode(payload, SECRET_KEY, algorithm=ALGORITHM)
+
+
+def get_email_verification_email(token: str) -> str | None:
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+    except JWTError:
+        return None
+    if payload.get("type") != EMAIL_VERIFICATION_TOKEN_TYPE:
+        return None
+    return payload.get("sub")
 
 
 def get_current_user(

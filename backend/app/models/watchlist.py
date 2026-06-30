@@ -20,6 +20,7 @@ class Watchlist(Base):
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"), nullable=False)
     source_city: Mapped[str] = mapped_column(String(50), nullable=False)
     destination_city: Mapped[str] = mapped_column(String(50), nullable=False)
+    flight_class: Mapped[str] = mapped_column(String(20), default="Economy", nullable=False)
     target_price: Mapped[float] = mapped_column(Float, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime, default=lambda: datetime.now(timezone.utc)

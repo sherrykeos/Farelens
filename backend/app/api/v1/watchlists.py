@@ -1,9 +1,10 @@
-from fastapi import APIRouter, Depends, HTTPException, Request, status
+from fastapi import APIRouter, BackgroundTasks, Depends, HTTPException, Request, status
 from sqlalchemy.orm import Session
 
 from app.core.database import get_db
 from app.core.rate_limit import limiter
 from app.core.security import get_current_user
+from app.jobs.check_price_alerts import check_alerts
 from app.models.user import User
 from app.models.watchlist import Watchlist
 from app.schemas.watchlist import WatchlistCreate, WatchlistResponse
@@ -18,6 +19,7 @@ MAX_WATCHLISTS_PER_USER = 20
 def create_watchlist(
     request: Request,
     payload: WatchlistCreate,
+    background_tasks: BackgroundTasks,
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ) -> Watchlist:
@@ -32,11 +34,18 @@ def create_watchlist(
         user_id=current_user.id,
         source_city=payload.source_city.value,
         destination_city=payload.destination_city.value,
+        flight_class=payload.flight_class.value,
         target_price=payload.target_price,
     )
     db.add(watchlist)
     db.commit()
     db.refresh(watchlist)
+
+    # Without this, a brand-new watchlist sits unchecked until the next
+    # periodic scheduler run (up to ALERT_CHECK_INTERVAL_HOURS away) even
+    # if it already matches an existing price. Runs after the response is
+    # sent, so it doesn't add latency to watchlist creation.
+    background_tasks.add_task(check_alerts)
     return watchlist
 
 
