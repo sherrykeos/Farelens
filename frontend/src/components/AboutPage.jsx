@@ -216,6 +216,11 @@ const AboutPage = () => (
                                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(10,102,194,0.15)'; e.currentTarget.style.borderColor = 'rgba(10,102,194,0.4)'; e.currentTarget.style.color = '#0a66c2'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
                             ><Linkedin size={16} /></a>
+                            <a href="https://sumitkumar-website.vercel.app/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio"
+                                style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'all 0.25s' }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(6,182,212,0.15)'; e.currentTarget.style.borderColor = 'rgba(6,182,212,0.4)'; e.currentTarget.style.color = '#06b6d4'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            ><Globe size={16} /></a>
                         </div>
                     </div>
 
@@ -248,6 +253,11 @@ const AboutPage = () => (
                                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(10,102,194,0.15)'; e.currentTarget.style.borderColor = 'rgba(10,102,194,0.4)'; e.currentTarget.style.color = '#0a66c2'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
                             ><Linkedin size={16} /></a>
+                            <a href="#" aria-label="Portfolio"
+                                style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'all 0.25s' }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(52,211,153,0.15)'; e.currentTarget.style.borderColor = 'rgba(52,211,153,0.4)'; e.currentTarget.style.color = '#34d399'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            ><Globe size={16} /></a>
                         </div>
                     </div>
 
@@ -280,6 +290,11 @@ const AboutPage = () => (
                                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(10,102,194,0.15)'; e.currentTarget.style.borderColor = 'rgba(10,102,194,0.4)'; e.currentTarget.style.color = '#0a66c2'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
                                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
                             ><Linkedin size={16} /></a>
+                            <a href="#" aria-label="Portfolio"
+                                style={{ width: 38, height: 38, borderRadius: '50%', background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.55)', textDecoration: 'none', transition: 'all 0.25s' }}
+                                onMouseEnter={e => { e.currentTarget.style.background = 'rgba(167,139,250,0.15)'; e.currentTarget.style.borderColor = 'rgba(167,139,250,0.4)'; e.currentTarget.style.color = '#a78bfa'; e.currentTarget.style.transform = 'translateY(-2px)'; }}
+                                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.12)'; e.currentTarget.style.color = 'rgba(255,255,255,0.55)'; e.currentTarget.style.transform = 'translateY(0)'; }}
+                            ><Globe size={16} /></a>
                         </div>
                     </div>
 

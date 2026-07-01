@@ -1,6 +1,4 @@
-# Minimal requirements to RUN the app — no AWS/Spark/dev/docs packages.
-# Use this on new machines instead of requirements.txt to avoid the
-# pyiceberg C++ build error that sagemaker/pyspark pull in on Windows.
+
 
 # Web API
 fastapi>=0.110.0
