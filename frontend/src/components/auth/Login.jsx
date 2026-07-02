@@ -26,34 +26,26 @@ const Login = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-10 overflow-hidden flex items-center justify-between gap-4 sm:gap-6 px-4 sm:px-12 lg:px-24 py-6">
+        <div className="fixed w-full h-full z-10 flex flex-col items-center justify-center">
             {/* Figma spec rotates this portrait photo (736x920) 90deg to fill a landscape page.
                 Sized in vmax + centered via translate so the rotated box always exceeds the
                 viewport on any screen size, instead of the fixed px offsets which only covered
                 one specific frame size and left a gap on others. */}
             <img
-                src="/Image/Auth.jpg"
+                src="/Image/authImg2.jpg"
                 alt=""
                 className="absolute"
                 style={{
-                    width: '140vmax',
-                    maxWidth: 'none',
-                    height: '175vmax',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%) rotate(-90deg)',
-                    opacity: 1,
-                    objectFit: 'cover',
+                   width: '140vmax',
                 }}
             />
-            <div className="relative z-10 flex items-center gap-2 sm:gap-3 shrink-0">
+            {/* <div className="relative z-10 flex items-center gap-2 sm:gap-3 shrink-0">
                 <span
-                    style={{ fontFamily: "'Dancing Script', cursive" }}
                     className="text-2xl sm:text-4xl lg:text-6xl text-white"
                 >
                     FareLens
                 </span>
-            </div>
+            </div> */}
 
             <div className="relative z-10 w-lg shadow-2xl" style={{ maxWidth: 716 }}>
                 {/* Gradient ring only — masked so the center is fully cut out, instead of a
@@ -77,6 +69,7 @@ const Login = () => {
                         background: 'rgba(212, 212, 212, 0.10)',
                     }}
                 >
+                    <p className='text-center mb-1 text-lg tracking-wider'>FareLens</p>
                 <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2">Welcome back</h1>
                 <p className="text-base text-white/70 text-center mb-10">Please Enter Your Detail</p>
 

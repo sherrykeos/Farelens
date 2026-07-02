@@ -64,11 +64,28 @@ body {
   background: linear-gradient(160deg, #0d1116 0%, #161c23 60%, #11161c 100%);
   min-height: 100vh;
   overflow-x: hidden;
+
+}
+
+::selection {
+  background-color: #2d7fb5; /* Change this to your desired highlight color */
+  color: #000000; /* Change this to your desired text color */
 }
 
 ::-webkit-scrollbar {
   width: 8px;
   height: 8px;
+}
+
+.change-on-hover:hover {
+  /* background-color: #2d7fb5;  */
+  color: #63b8f0;            
+  transition: 0.3s;          
+}
+
+.hover-to-scale:hover {
+  transform: scale(1.1);
+  transition: transform 0.3s ease-in-out ;
 }
 
 ::-webkit-scrollbar-track {

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+git pull origin mainimport React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { forgotPassword } from '../../api/client';
@@ -31,7 +31,7 @@ const ForgotPassword = () => {
                 (736x920), rotated -90deg to fill this landscape page, sized in vmax +
                 centered via translate so it always covers the viewport on any screen size. */}
             <img
-                src="/Image/Auth.jpg"
+                src="/Image/auth1.png"
                 alt=""
                 className="absolute"
                 style={{
