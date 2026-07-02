@@ -26,35 +26,36 @@ const ForgotPassword = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-10 overflow-hidden flex items-center justify-between gap-4 sm:gap-6 px-4 sm:px-12 lg:px-24 py-6">
-            {/* Same rotated-photo background as Login/Signup — source photo is portrait
-                (736x920), rotated -90deg to fill this landscape page, sized in vmax +
-                centered via translate so it always covers the viewport on any screen size. */}
+        <div className="fixed inset-0 z-10 overflow-hidden flex">
             <img
+<<<<<<< HEAD
                 src="/Image/auth1.png"
+=======
+                src="/Image/Auth2.jpg"
+>>>>>>> a2b95393000a4dd4d6d011fc06b6554c4afece3d
                 alt=""
                 className="absolute"
                 style={{
-                    width: '140vmax',
-                    maxWidth: 'none',
-                    height: '175vmax',
-                    top: '50%',
-                    left: '50%',
-                    transform: 'translate(-50%, -50%) rotate(-90deg)',
-                    opacity: 1,
+                    width: '100%',
+                    height: '100%',
+                    top: 0,
+                    left: 0,
                     objectFit: 'cover',
+                    objectPosition: 'center',
                 }}
             />
-            <div className="relative z-10 flex items-center gap-2 sm:gap-3 shrink-0">
+            <div className="flex-1" />
+            <div className="relative z-10 w-1/2 flex flex-col items-center justify-center gap-6 py-8 px-8 overflow-y-auto">
+            <div className="flex items-center">
                 <span
                     style={{ fontFamily: "'Dancing Script', cursive" }}
-                    className="text-2xl sm:text-4xl lg:text-6xl text-white"
+                    className="text-4xl sm:text-5xl text-white drop-shadow-lg"
                 >
                     FareLens
                 </span>
             </div>
 
-            <div className="relative z-10 w-lg shadow-2xl" style={{ maxWidth: 716 }}>
+            <div className="relative z-10 w-full shadow-2xl" style={{ maxWidth: 480 }}>
                 {/* Gradient ring only — masked so the center is fully cut out, instead of a
                     solid gradient div sitting behind the translucent content (which would
                     show through the 10%-opacity fill as a flat gray wash). */}
@@ -135,6 +136,7 @@ const ForgotPassword = () => {
                         </Link>
                     </p>
                 </div>
+            </div>
             </div>
         </div>
     );
