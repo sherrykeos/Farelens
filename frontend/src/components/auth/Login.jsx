@@ -26,7 +26,6 @@ const Login = () => {
     };
 
     return (
-<<<<<<< HEAD
         <div className="fixed w-full h-full z-10 flex flex-col items-center justify-center">
             {/* Figma spec rotates this portrait photo (736x920) 90deg to fill a landscape page.
                 Sized in vmax + centered via translate so the rotated box always exceeds the
@@ -43,28 +42,6 @@ const Login = () => {
             {/* <div className="relative z-10 flex items-center gap-2 sm:gap-3 shrink-0">
                 <span
                     className="text-2xl sm:text-4xl lg:text-6xl text-white"
-=======
-        <div className="fixed inset-0 z-10 overflow-hidden flex">
-            <img
-                src="/Image/Auth2.jpg"
-                alt=""
-                className="absolute"
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    top: 0,
-                    left: 0,
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                }}
-            />
-            <div className="flex-1" />
-            <div className="relative z-10 w-1/2 flex flex-col items-center justify-center gap-6 py-8 px-8 overflow-y-auto">
-            <div className="flex items-center">
-                <span
-                    style={{ fontFamily: "'Dancing Script', cursive" }}
-                    className="text-4xl sm:text-5xl text-white drop-shadow-lg"
->>>>>>> a2b95393000a4dd4d6d011fc06b6554c4afece3d
                 >
                     FareLens
                 </span>
@@ -155,7 +132,6 @@ const Login = () => {
                 </div>
             </div>
             </div>
-        </div>
     );
 };
 

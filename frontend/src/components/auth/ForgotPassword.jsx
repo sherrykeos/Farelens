@@ -1,4 +1,4 @@
-git pull origin mainimport React, { useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { forgotPassword } from '../../api/client';
@@ -28,11 +28,7 @@ const ForgotPassword = () => {
     return (
         <div className="fixed inset-0 z-10 overflow-hidden flex">
             <img
-<<<<<<< HEAD
                 src="/Image/auth1.png"
-=======
-                src="/Image/Auth2.jpg"
->>>>>>> a2b95393000a4dd4d6d011fc06b6554c4afece3d
                 alt=""
                 className="absolute"
                 style={{
