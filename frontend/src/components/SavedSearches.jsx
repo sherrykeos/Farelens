@@ -61,21 +61,21 @@ const SavedSearches = ({ onPredictRoute }) => {
         });
     };
 
-    const glassCard = 'rounded-2xl border border-white/15 bg-white/5 shadow-lg p-6 transition-all duration-300';
-    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-white/10';
-    const cardTitle = 'flex items-center gap-2 text-xl font-semibold text-white';
-    const glassLabel = 'flex items-center gap-1 text-sm font-semibold text-white/70';
-    const glassSelect = 'w-full px-4 py-2 rounded-md text-sm transition-all duration-300 bg-white/5 border border-white/15 text-white cursor-pointer focus:outline-none focus:border-cyan-300/60 focus:ring-3 focus:ring-cyan-300/15';
-    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md text-base font-semibold cursor-pointer transition-all duration-300 border-none bg-linear-to-br from-cyan-400 to-blue-600 text-white shadow-md hover:shadow-[0_0_16px_rgba(103,232,249,0.4)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0';
-    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2 rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 bg-white/10 text-white border border-white/15 hover:bg-white/20';
-    const btnIcon = 'flex items-center justify-center w-10 h-10 bg-white/5 border border-white/15 rounded-md cursor-pointer transition-all duration-300 text-white/55 hover:bg-white/10 hover:text-white hover:border-cyan-300/40';
+    const glassCard = 'bg-surface border border-border rounded-xl shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-6';
+    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-border';
+    const cardTitle = 'text-base font-semibold text-text-primary tracking-tight flex items-center gap-2';
+    const glassLabel = 'flex items-center gap-1.5 text-xs font-medium text-text-secondary mb-1.5';
+    const glassSelect = 'w-full px-3 py-2.5 rounded-lg text-sm transition-all duration-200 bg-bg-secondary border border-border text-text-primary hover:border-text-tertiary focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10 cursor-pointer appearance-none';
+    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 border-none bg-primary text-bg-primary shadow-[0_2px_10px_rgba(34,211,238,0.2)] hover:shadow-[0_4px_15px_rgba(34,211,238,0.4)] hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none';
+    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 bg-surface border border-border text-text-primary hover:bg-surface-hover hover:border-text-tertiary shadow-sm';
+    const btnIcon = 'flex items-center justify-center w-9 h-9 bg-surface border border-border rounded-md cursor-pointer transition-all duration-200 text-text-tertiary hover:bg-error/10 hover:text-error hover:border-error/30 shadow-sm';
 
     return (
         <div className="flex flex-col gap-8">
             <div className="flex justify-between items-start mb-2 flex-col lg:flex-row gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-white mb-1">Saved Searches</h1>
-                    <p className="text-base text-white/60">Quick access to the routes you check often</p>
+                    <h1 className="text-2xl font-bold text-text-primary mb-1 tracking-tight">Saved Searches</h1>
+                    <p className="text-sm text-text-secondary">Quick access to the routes you check often</p>
                 </div>
             </div>
 
@@ -121,12 +121,16 @@ const SavedSearches = ({ onPredictRoute }) => {
                     ) : items.length > 0 ? (
                         <div className="flex flex-col gap-4">
                             {items.map((s) => (
-                                <div key={s.id} className="flex items-center justify-between gap-4 p-4 bg-white/5 rounded-md transition-all duration-300 hover:bg-white/10">
-                                    <div className="flex items-center gap-4">
-                                        <MapPin size={18} className="text-cyan-300" />
-                                        <p className="text-white">{s.source_city} → {s.destination_city} <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-sky-400/15 text-sky-300 border border-sky-300/40">{s.flight_class}</span></p>
+                                <div key={s.id} className="flex flex-wrap items-center justify-between gap-4 p-4 bg-white/5 rounded-md transition-all duration-300 hover:bg-white/10">
+                                    <div className="flex items-start sm:items-center gap-4 min-w-0">
+                                        <div className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 text-primary mt-1 sm:mt-0">
+                                            <MapPin size={16} />
+                                        </div>
+                                        <div className="min-w-0">
+                                            <p className="text-sm font-semibold text-text-primary mb-1 break-words">{s.source_city} → {s.destination_city} <span className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 sm:mt-0 sm:ml-2 rounded-md text-[10px] font-bold uppercase tracking-wider bg-info/10 text-info border border-info/20 whitespace-nowrap">{s.flight_class}</span></p>
+                                        </div>
                                     </div>
-                                    <div className="flex gap-2">
+                                    <div className="flex gap-2 ml-auto">
                                         <button className={btnSecondary} onClick={() => handlePredict(s)}>
                                             <TrendingUp size={14} /> Predict
                                         </button>
@@ -138,12 +142,14 @@ const SavedSearches = ({ onPredictRoute }) => {
                             ))}
                         </div>
                     ) : (
-                        <div className="min-h-100 flex items-center justify-center">
-                            <div className="text-center max-w-100">
-                                <Search size={48} className="text-white/25 mb-6 mx-auto" />
-                                <h3 className="text-xl font-bold text-white mb-2">No saved searches yet</h3>
-                                <p className="text-sm text-white/55 leading-relaxed">Save a route to quickly predict it later</p>
+                        <div className="flex flex-col items-center justify-center text-center p-12 border border-dashed border-border rounded-xl bg-bg-secondary/30 h-[300px]">
+                            <div className="w-16 h-16 rounded-full bg-surface border border-border flex items-center justify-center mb-4 text-text-tertiary shadow-sm">
+                                <Search size={24} />
                             </div>
+                            <h3 className="text-lg font-semibold text-text-primary mb-2">No saved searches yet</h3>
+                            <p className="text-sm text-text-secondary max-w-sm">
+                                Save a route to quickly predict it later.
+                            </p>
                         </div>
                     )}
                 </div>

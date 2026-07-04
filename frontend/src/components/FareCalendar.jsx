@@ -156,21 +156,21 @@ const FareCalendar = ({ onPredictRoute }) => {
         setCompareDay(null);
     };
 
-    const glassCard = 'rounded-2xl border border-white/15 bg-white/5 shadow-lg p-6 transition-all duration-300';
-    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-white/10';
-    const cardTitle = 'flex items-center gap-2 text-xl font-semibold text-white';
-    const glassLabel = 'flex items-center gap-1 text-sm font-semibold text-white/70';
-    const glassInput = 'w-full px-4 py-2 rounded-md text-sm transition-all duration-300 bg-white/5 border border-white/15 text-white focus:outline-none focus:border-cyan-300/60 focus:ring-3 focus:ring-cyan-300/15';
-    const glassSelect = `${glassInput} cursor-pointer`;
-    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-6 py-2 rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 border-none bg-linear-to-br from-cyan-400 to-blue-600 text-white shadow-md hover:shadow-[0_0_16px_rgba(103,232,249,0.4)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0';
-    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2 rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 bg-white/10 text-white border border-white/15 hover:bg-white/20';
+    const glassCard = 'bg-surface border border-border rounded-xl shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-6';
+    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-border';
+    const cardTitle = 'text-base font-semibold text-text-primary tracking-tight flex items-center gap-2';
+    const glassLabel = 'flex items-center gap-1.5 text-xs font-medium text-text-secondary mb-1.5';
+    const glassInput = 'w-full px-3 py-2.5 rounded-lg text-sm transition-all duration-200 bg-bg-secondary border border-border text-text-primary hover:border-text-tertiary focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10';
+    const glassSelect = `${glassInput} cursor-pointer appearance-none`;
+    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 border-none bg-primary text-bg-primary shadow-[0_2px_10px_rgba(34,211,238,0.2)] hover:shadow-[0_4px_15px_rgba(34,211,238,0.4)] hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none';
+    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 bg-surface border border-border text-text-primary hover:bg-surface-hover hover:border-text-tertiary shadow-sm';
 
     return (
         <div className="flex flex-col gap-8">
             <div className="flex justify-between items-start mb-2 flex-col lg:flex-row gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-white mb-1">Fare Calendar</h1>
-                    <p className="text-base text-white/60">Find the cheapest day to fly, from real collected fares</p>
+                    <h1 className="text-2xl font-bold text-text-primary mb-1 tracking-tight">Fare Calendar</h1>
+                    <p className="text-sm text-text-secondary">Find the cheapest day to fly, from real collected fares.</p>
                 </div>
             </div>
 
@@ -231,7 +231,7 @@ const FareCalendar = ({ onPredictRoute }) => {
                         />
                     </div>
                 </div>
-                <p className="text-base text-white/60" style={{ marginTop: 'var(--spacing-sm)' }}>
+                <p className="text-sm text-text-secondary" style={{ marginTop: 'var(--spacing-sm)' }}>
                     Data is collected {MIN_DATE} to {MAX_DATE} (next 49 days) — dates outside this range aren't available yet.
                 </p>
                 <button type="submit" className={btnPrimary} style={{ marginTop: 'var(--spacing-lg)' }} disabled={loading}>
@@ -240,14 +240,14 @@ const FareCalendar = ({ onPredictRoute }) => {
             </form>
 
             {searched && cheapest && (
-                <div className="flex items-center gap-4 bg-emerald-400/10 border border-emerald-300/40 rounded-2xl p-6">
-                    <Sparkles size={28} className="text-emerald-300" />
+                <div className="flex items-center gap-4 bg-success/10 border border-success/30 rounded-xl p-6 shadow-sm">
+                    <Sparkles size={28} className="text-success" />
                     <div>
-                        <p className="font-bold text-white">
+                        <p className="font-bold text-text-primary">
                             Cheapest day: {cheapest.travel_date} — ₹{cheapest.price.toLocaleString('en-IN')}
-                            <span className="text-base text-white/60"> (±₹{Math.round(cheapest.price - cheapest.confidence_low).toLocaleString('en-IN')})</span>
+                            <span className="text-sm text-text-secondary font-normal"> (±₹{Math.round(cheapest.price - cheapest.confidence_low).toLocaleString('en-IN')})</span>
                         </p>
-                        <p className="text-base text-white/60">
+                        <p className="text-sm text-text-secondary mt-1">
                             {cheapest.airline} · {FLIGHT_OPTIONS.stops.find((s) => s.value === cheapest.stops)?.label} ·
                             {' '}Out of {days.length} days between {route.date_from} and {route.date_to}
                         </p>
@@ -262,7 +262,7 @@ const FareCalendar = ({ onPredictRoute }) => {
                             <CalendarDays size={18} />
                             {route.date_from} → {route.date_to} ({days.length} days)
                         </h3>
-                        <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-cyan-400/15 text-cyan-300 border border-cyan-300/40">
+                        <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-[10px] font-bold uppercase tracking-wider bg-info/10 text-info border border-info/20">
                             <HelpCircle size={12} /> Click a day to compare airlines
                         </span>
                     </div>
@@ -276,14 +276,14 @@ const FareCalendar = ({ onPredictRoute }) => {
                                         type="button"
                                         key={d.travel_date}
                                         onClick={() => handleDayClick(d)}
-                                        className={`flex flex-col items-center justify-center gap-0.5 p-2 border rounded-md transition-all duration-150 font-[inherit] cursor-pointer hover:border-cyan-300/60 hover:-translate-y-0.5 ${TIER_BG[tier] || 'bg-white/5'} ${d.is_anomaly ? 'border-red-400 shadow-[0_0_0_1px_#f87171]' : isCheapestDay ? 'border-emerald-400 shadow-[0_0_0_2px_#34d399]' : 'border-white/10'}`}
+                                        className={`flex flex-col items-center justify-center gap-0.5 p-2 border rounded-lg transition-all duration-150 font-[inherit] cursor-pointer hover:border-primary hover:-translate-y-0.5 ${TIER_BG[tier] || 'bg-bg-secondary/50'} ${d.is_anomaly ? 'border-error shadow-[0_0_0_1px_#F87171]' : isCheapestDay ? 'border-success shadow-[0_0_0_2px_#34D399]' : 'border-border'}`}
                                         title={`${d.airline} · ${d.stops.replace('_', ' ')}`}
                                     >
-                                        <span className="text-xs text-white/55">{d.travel_date.slice(5)}</span>
+                                        <span className="text-xs text-text-secondary">{d.travel_date.slice(5)}</span>
                                         <span className={`text-sm font-bold ${TIER_TEXT[tier]}`}>
                                             ₹{Math.round(d.price).toLocaleString('en-IN')}
                                         </span>
-                                        <span className="text-[10px] text-white/55">
+                                        <span className="text-[10px] text-text-tertiary">
                                             ±₹{Math.round(d.price - d.confidence_low).toLocaleString('en-IN')}
                                         </span>
                                     </button>
@@ -291,8 +291,8 @@ const FareCalendar = ({ onPredictRoute }) => {
                             })}
                         </div>
                     ) : (
-                        <p className="text-base text-white/60">
-                            No data for this range — run <code>python -m app.jobs.generate_price_history</code> on the backend,
+                        <p className="text-sm text-text-secondary">
+                            No data for this range — run <code className="bg-bg-secondary px-1.5 py-0.5 rounded text-xs border border-border">python -m app.jobs.generate_price_history</code> on the backend,
                             or widen your date range (only the next 49 days are collected).
                         </p>
                     )}

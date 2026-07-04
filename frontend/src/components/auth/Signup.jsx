@@ -42,30 +42,17 @@ const Signup = () => {
     };
 
     return (
-        <div className="fixed inset-0 z-10 overflow-hidden flex">
-            <img
-                src="/Image/Auth2.jpg"
-                alt=""
-                className="absolute"
-                style={{
-                    width: '100%',
-                    height: '100%',
-                    top: 0,
-                    left: 0,
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                }}
-            />
-            <div className="flex-1" />
-            <div className="relative z-10 w-1/2 flex flex-col items-center justify-center gap-6 py-8 px-8 overflow-y-auto">
-            <div className="flex items-center">
-                <span
-                    style={{ fontFamily: "'Dancing Script', cursive" }}
-                    className="text-4xl sm:text-5xl text-white drop-shadow-lg"
-                >
-                    FareLens
-                </span>
-            </div>
+        <div className="fixed w-full h-full z-10 flex flex-col justify-center items-center lg:items-end bg-[url('/Image/authImg2.jpg')] bg-cover bg-center">
+            
+            <div className="flex flex-col items-center gap-6 w-full px-4 sm:px-0 lg:mr-45 lg:w-auto">
+
+            <a
+                href="/"
+                className=" flex gap-2 text-white/70 hover:text-white transition-colors duration-300 items-center mb-4"
+            >
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-move-left"><path d="M6 8L2 12L6 16"/><path d="M2 12H22"/></svg>
+                Back to landing page
+            </a>
 
             <div className="relative z-10 w-full shadow-2xl" style={{ maxWidth: 480 }}>
                 {/* Gradient ring only — masked so the center is fully cut out, instead of a
@@ -89,12 +76,15 @@ const Signup = () => {
                         background: 'rgba(212, 212, 212, 0.10)',
                     }}
                 >
-                    <h1 className="text-3xl sm:text-4xl font-bold text-center mb-2">Create your account</h1>
-                    <p className="text-sm text-white/70 text-center mb-6">
-                        Track fares, save searches, and get real predictions
+                    <p className="text-center mb-1 text-lg tracking-wider">FareLens</p>
+                    <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2">
+                        Create account
+                    </h1>
+                    <p className="text-base text-white/70 text-center mb-10">
+                        Please enter your details
                     </p>
 
-                    <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+                    <form onSubmit={handleSubmit} className="flex flex-col gap-6">
                         <div>
                             <label className="block text-sm font-semibold mb-1">Name</label>
                             <input

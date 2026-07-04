@@ -11,15 +11,15 @@ import {
 } from 'lucide-react';
 
 const navItemClass = (active) =>
-    `relative flex items-center gap-3 w-full p-2.5 rounded-xl text-sm font-medium text-left cursor-pointer transition-all duration-300 group ${active
-        ? 'bg-white/15 text-white font-semibold'
-        : 'text-white/60 hover:bg-white/10 hover:text-white'
+    `relative flex items-center gap-3 w-full px-3 py-2.5 rounded-lg text-sm font-medium text-left cursor-pointer transition-all duration-200 group ${active
+        ? 'bg-primary/10 text-primary'
+        : 'text-text-secondary hover:bg-surface-hover hover:text-text-primary'
     }`;
 
 const iconBubbleClass = (active) =>
-    `flex items-center justify-center w-9 h-9 rounded-full shrink-0 border transition-all duration-300 ${active
-        ? 'bg-cyan-400/20 border-cyan-300/60 text-cyan-200 shadow-[0_0_12px_rgba(103,232,249,0.45)]'
-        : 'bg-white/5 border-white/15 text-white/70 group-hover:border-white/30'
+    `flex items-center justify-center shrink-0 transition-colors duration-200 ${active
+        ? 'text-primary'
+        : 'text-text-tertiary group-hover:text-text-secondary'
     }`;
 
 const Sidebar = ({ activeTab, setActiveTab, onNavigate }) => {
@@ -52,7 +52,7 @@ const Sidebar = ({ activeTab, setActiveTab, onNavigate }) => {
                 <li key={item.id}>
                     <button className={navItemClass(active)} onClick={() => handleSelect(item.id)}>
                         <span className={iconBubbleClass(active)}>
-                            <Icon size={16} />
+                            <Icon size={18} />
                         </span>
                         <span className="flex-1">{item.label}</span>
                     </button>
@@ -61,19 +61,17 @@ const Sidebar = ({ activeTab, setActiveTab, onNavigate }) => {
         });
 
     return (
-        <aside className="w-66 lg:flex-1 lg:min-h-0 shrink-0 rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl shadow-2xl overflow-y-auto animate-fadeIn">
-            <nav className="flex flex-col h-full p-5">
-                <div className="mb-6">
-                    <div className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3 px-2">Main Menu</div>
-                    <ul className="list-none flex flex-col gap-1">{renderItems(menuItems)}</ul>
-                </div>
+        <nav className="flex flex-col h-full p-4">
+            <div className="mb-8">
+                <div className="text-[11px] font-bold text-text-tertiary uppercase tracking-wider mb-2 px-3">Main Menu</div>
+                <ul className="list-none flex flex-col gap-0.5">{renderItems(menuItems)}</ul>
+            </div>
 
-                <div>
-                    <div className="text-xs font-bold text-white/50 uppercase tracking-widest mb-3 px-2">Account</div>
-                    <ul className="list-none flex flex-col gap-1">{renderItems(accountItems)}</ul>
-                </div>
-            </nav>
-        </aside>
+            <div>
+                <div className="text-[11px] font-bold text-text-tertiary uppercase tracking-wider mb-2 px-3">Account</div>
+                <ul className="list-none flex flex-col gap-0.5">{renderItems(accountItems)}</ul>
+            </div>
+        </nav>
     );
 };
 

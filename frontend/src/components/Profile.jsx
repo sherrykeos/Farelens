@@ -96,25 +96,25 @@ const Profile = () => {
         }
     };
 
-    const glassCard = 'rounded-2xl border border-white/15 bg-white/5 shadow-lg p-6 transition-all duration-300';
-    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-white/10';
-    const cardTitle = 'flex items-center gap-2 text-xl font-semibold text-white';
-    const glassInput = 'w-full px-4 py-2 rounded-md text-sm transition-all duration-300 bg-white/5 border border-white/15 text-white focus:outline-none focus:border-cyan-300/60 focus:ring-3 focus:ring-cyan-300/15';
-    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2 rounded-md text-sm font-semibold cursor-pointer transition-all duration-300 bg-white/10 text-white border border-white/15 hover:bg-white/20 disabled:opacity-60 disabled:cursor-not-allowed';
+    const glassCard = 'bg-surface border border-border rounded-xl shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-6';
+    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-border';
+    const cardTitle = 'text-base font-semibold text-text-primary tracking-tight flex items-center gap-2';
+    const glassInput = 'w-full px-3 py-2.5 rounded-lg text-sm transition-all duration-200 bg-bg-secondary border border-border text-text-primary hover:border-text-tertiary focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10';
+    const btnSecondary = 'inline-flex items-center justify-center gap-2 px-6 py-2.5 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 bg-surface border border-border text-text-primary hover:bg-surface-hover hover:border-text-tertiary shadow-sm disabled:opacity-60 disabled:cursor-not-allowed';
 
     return (
         <div className="flex flex-col gap-8">
             <div className="flex justify-between items-start mb-2 flex-col lg:flex-row gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-white mb-1">Profile</h1>
-                    <p className="text-base text-white/60">Your real account data from /auth/me</p>
+                    <h1 className="text-2xl font-bold text-text-primary mb-1 tracking-tight">Profile</h1>
+                    <p className="text-sm text-text-secondary">Your real account data from /auth/me</p>
                 </div>
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                 <div className={`${glassCard} flex flex-col items-center p-8 text-center`}>
                     <div className="relative mb-6">
-                        <div className="flex items-center justify-center w-30 h-30 bg-linear-to-br from-cyan-400 to-blue-600 rounded-full text-white overflow-hidden border border-white/20">
+                        <div className="flex items-center justify-center w-32 h-32 bg-primary/10 border border-primary/20 rounded-full text-primary overflow-hidden">
                             {user?.avatar_url ? (
                                 <img src={user.avatar_url} alt="" className="w-full h-full object-cover" />
                             ) : user?.name || user?.email ? (
@@ -129,7 +129,7 @@ const Profile = () => {
                                 onClick={() => fileInputRef.current?.click()}
                                 disabled={uploadingPhoto}
                                 aria-label="Change profile photo"
-                                className="flex items-center justify-center w-9 h-9 bg-cyan-500 text-white rounded-full border-2 border-[#0d1116] cursor-pointer hover:bg-cyan-400 transition-colors duration-300"
+                                className="flex items-center justify-center w-9 h-9 bg-primary text-bg-primary rounded-full border border-bg-primary shadow-sm cursor-pointer hover:brightness-110 transition-colors duration-200"
                             >
                                 <Camera size={16} />
                             </button>
@@ -139,7 +139,7 @@ const Profile = () => {
                                     onClick={handleRemovePhoto}
                                     disabled={removingPhoto}
                                     aria-label="Remove profile photo"
-                                    className="flex items-center justify-center w-9 h-9 bg-red-500 text-white rounded-full border-2 border-[#0d1116] cursor-pointer hover:bg-red-400 transition-colors duration-300"
+                                    className="flex items-center justify-center w-9 h-9 bg-error text-white rounded-full border border-bg-primary shadow-sm cursor-pointer hover:brightness-110 transition-colors duration-200"
                                 >
                                     <Trash2 size={16} />
                                 </button>
@@ -153,14 +153,14 @@ const Profile = () => {
                             onChange={handlePhotoSelect}
                         />
                     </div>
-                    {uploadingPhoto && <p className="text-xs text-white/55 -mt-4 mb-4">Uploading...</p>}
-                    {removingPhoto && <p className="text-xs text-white/55 -mt-4 mb-4">Removing...</p>}
+                    {uploadingPhoto && <p className="text-xs text-text-secondary -mt-4 mb-4">Uploading...</p>}
+                    {removingPhoto && <p className="text-xs text-text-secondary -mt-4 mb-4">Removing...</p>}
 
                     {editingName ? (
                         <div className="flex items-center gap-2 mb-1">
                             <input
                                 type="text"
-                                className={`${glassInput} text-center`}
+                                className={`${glassInput} text-center py-1.5`}
                                 value={nameInput}
                                 onChange={(e) => setNameInput(e.target.value)}
                                 autoFocus
@@ -170,37 +170,37 @@ const Profile = () => {
                             </button>
                         </div>
                     ) : (
-                        <h2 className="flex items-center gap-2 text-2xl font-bold text-white mb-1">
+                        <h2 className="flex items-center gap-2 text-xl font-bold text-text-primary mb-1">
                             {user?.name || user?.email}
                             <button
                                 type="button"
                                 aria-label="Edit name"
                                 onClick={() => { setNameInput(user?.name || ''); setEditingName(true); }}
-                                className="text-white/55 hover:text-cyan-300 transition-colors duration-300"
+                                className="text-text-tertiary hover:text-primary transition-colors duration-200"
                             >
                                 <Pencil size={14} />
                             </button>
                         </h2>
                     )}
-                    <p className="text-base text-white/60 mb-6">{user?.role}</p>
+                    <p className="text-sm text-text-secondary mb-6">{user?.role}</p>
 
-                    <div className="flex gap-8 pt-6 border-t border-white/10 w-full justify-center">
+                    <div className="flex gap-8 pt-6 border-t border-border w-full justify-center">
                         <div className="flex flex-col items-center">
-                            <span className="text-xl font-bold text-cyan-300">{counts.watchlists}</span>
-                            <span className="text-xs text-white/55">Watchlists</span>
+                            <span className="text-xl font-bold text-primary">{counts.watchlists}</span>
+                            <span className="text-[10px] uppercase font-semibold text-text-secondary tracking-wider mt-1">Watchlists</span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-xl font-bold text-cyan-300">{counts.savedSearches}</span>
-                            <span className="text-xs text-white/55">Saved Searches</span>
+                            <span className="text-xl font-bold text-primary">{counts.savedSearches}</span>
+                            <span className="text-[10px] uppercase font-semibold text-text-secondary tracking-wider mt-1">Searches</span>
                         </div>
                         <div className="flex flex-col items-center">
-                            <span className="text-xl font-bold text-cyan-300">{counts.alerts}</span>
-                            <span className="text-xs text-white/55">Price Alerts</span>
+                            <span className="text-xl font-bold text-primary">{counts.alerts}</span>
+                            <span className="text-[10px] uppercase font-semibold text-text-secondary tracking-wider mt-1">Alerts</span>
                         </div>
                     </div>
 
-                    <button className={`${btnSecondary} px-8 py-4 text-base`} style={{ marginTop: 'var(--spacing-lg)', width: '100%' }} onClick={logout}>
-                        <LogOut size={18} /> Logout
+                    <button className={`${btnSecondary} px-8 py-3.5 mt-8 w-full border-error/20 text-error hover:bg-error/10 hover:border-error/30`} onClick={logout}>
+                        <LogOut size={16} /> Logout
                     </button>
                 </div>
 
@@ -210,57 +210,57 @@ const Profile = () => {
                     </div>
                     <div className="flex flex-col gap-6 mt-4">
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><User size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><User size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Name</label>
-                                <p className="text-base text-white">{user?.name || '—'}</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Name</label>
+                                <p className="text-sm font-medium text-text-primary">{user?.name || '—'}</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Mail size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Mail size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Email</label>
-                                <p className="text-base text-white">{user?.email}</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Email</label>
+                                <p className="text-sm font-medium text-text-primary">{user?.email}</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Shield size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Shield size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Role</label>
-                                <p className="text-base text-white">{user?.role}</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Role</label>
+                                <p className="text-sm font-medium text-text-primary">{user?.role}</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Calendar size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Calendar size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Member since</label>
-                                <p className="text-base text-white">{user?.created_at ? new Date(user.created_at).toLocaleDateString() : '—'}</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Member since</label>
+                                <p className="text-sm font-medium text-text-primary">{user?.created_at ? new Date(user.created_at).toLocaleDateString() : '—'}</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Bookmark size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Bookmark size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Watchlists</label>
-                                <p className="text-base text-white">{counts.watchlists} of 20 used</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Watchlists</label>
+                                <p className="text-sm font-medium text-text-primary">{counts.watchlists} of 20 used</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Search size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Search size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Saved Searches</label>
-                                <p className="text-base text-white">{counts.savedSearches} of 30 used</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Saved Searches</label>
+                                <p className="text-sm font-medium text-text-primary">{counts.savedSearches} of 30 used</p>
                             </div>
                         </div>
                         <div className="flex gap-4 items-start">
-                            <div className="flex items-center justify-center w-10 h-10 bg-cyan-400/15 border border-cyan-300/40 rounded-md text-cyan-300 shrink-0"><Bell size={18} /></div>
+                            <div className="flex items-center justify-center w-10 h-10 bg-primary/10 border border-primary/20 rounded-lg text-primary shrink-0"><Bell size={18} /></div>
                             <div className="flex-1">
-                                <label className="block text-sm font-semibold text-white/55 mb-1">Price Alerts</label>
-                                <p className="text-base text-white">{counts.alerts} triggered</p>
+                                <label className="block text-xs font-semibold text-text-secondary mb-1">Price Alerts</label>
+                                <p className="text-sm font-medium text-text-primary">{counts.alerts} triggered</p>
                             </div>
                         </div>
                     </div>
 
-                    <div className="h-px bg-white/10" style={{ margin: 'var(--spacing-lg) 0' }}></div>
+                    <div className="h-px bg-border" style={{ margin: 'var(--spacing-lg) 0' }}></div>
 
                     <h3 className={cardTitle} style={{ marginBottom: 'var(--spacing-md)' }}>
                         <KeyRound size={18} />
@@ -271,13 +271,13 @@ const Profile = () => {
                             <button className={btnSecondary} onClick={handleRequestReset} disabled={requesting}>
                                 {requesting ? 'Sending...' : 'Send password reset link'}
                             </button>
-                            <p className="text-base text-white/60" style={{ marginTop: 'var(--spacing-sm)' }}>
+                            <p className="text-sm text-text-secondary" style={{ marginTop: 'var(--spacing-sm)' }}>
                                 We'll email a reset link to {user?.email} — click it to set a new password.
                             </p>
                         </>
                     ) : (
                         <>
-                            <p className="text-emerald-400 font-semibold">
+                            <p className="text-sm text-success font-medium">
                                 Check your inbox for the reset link.
                             </p>
                             <button className={`${btnSecondary} px-3.5 py-1.5 text-xs`} style={{ marginTop: 'var(--spacing-sm)' }} onClick={handleRequestReset} disabled={requesting}>

@@ -57,21 +57,21 @@ const Watchlists = () => {
         }
     };
 
-    const glassCard = 'rounded-2xl border border-white/15 bg-white/5 shadow-lg p-6 transition-all duration-300';
-    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-white/10';
-    const cardTitle = 'flex items-center gap-2 text-xl font-semibold text-white';
-    const glassLabel = 'flex items-center gap-1 text-sm font-semibold text-white/70';
-    const glassInput = 'w-full px-4 py-2 rounded-md text-sm transition-all duration-300 bg-white/5 border border-white/15 text-white focus:outline-none focus:border-cyan-300/60 focus:ring-3 focus:ring-cyan-300/15';
-    const glassSelect = `${glassInput} cursor-pointer`;
-    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-8 py-4 rounded-md text-base font-semibold cursor-pointer transition-all duration-300 border-none bg-linear-to-br from-cyan-400 to-blue-600 text-white shadow-md hover:shadow-[0_0_16px_rgba(103,232,249,0.4)] hover:-translate-y-0.5 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0';
-    const btnIcon = 'flex items-center justify-center w-10 h-10 bg-white/5 border border-white/15 rounded-md cursor-pointer transition-all duration-300 text-white/55 hover:bg-white/10 hover:text-white hover:border-cyan-300/40';
+    const glassCard = 'bg-surface border border-border rounded-xl shadow-[0_2px_10px_-4px_rgba(0,0,0,0.1)] p-6';
+    const cardHeader = 'flex justify-between items-center mb-6 pb-4 border-b border-border';
+    const cardTitle = 'text-base font-semibold text-text-primary tracking-tight flex items-center gap-2';
+    const glassLabel = 'flex items-center gap-1.5 text-xs font-medium text-text-secondary mb-1.5';
+    const glassInput = 'w-full px-3 py-2.5 rounded-lg text-sm transition-all duration-200 bg-bg-secondary border border-border text-text-primary hover:border-text-tertiary focus:outline-none focus:border-primary focus:ring-4 focus:ring-primary/10';
+    const glassSelect = `${glassInput} cursor-pointer appearance-none`;
+    const btnPrimary = 'inline-flex items-center justify-center gap-2 px-8 py-3.5 mt-2 rounded-lg text-sm font-semibold cursor-pointer transition-all duration-200 border-none bg-primary text-bg-primary shadow-[0_2px_10px_rgba(34,211,238,0.2)] hover:shadow-[0_4px_15px_rgba(34,211,238,0.4)] hover:-translate-y-0.5 hover:brightness-110 disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0 disabled:hover:shadow-none';
+    const btnIcon = 'flex items-center justify-center w-8 h-8 bg-surface border border-border rounded-md cursor-pointer transition-all duration-200 text-text-tertiary hover:bg-error/10 hover:text-error hover:border-error/30';
 
     return (
         <div className="flex flex-col gap-8">
             <div className="flex justify-between items-start mb-2 flex-col lg:flex-row gap-4">
                 <div>
-                    <h1 className="text-3xl font-extrabold text-white mb-1">Watchlists</h1>
-                    <p className="text-base text-white/60">Get notified when a route drops below your target price</p>
+                    <h1 className="text-2xl font-bold text-text-primary mb-1 tracking-tight">Watchlists</h1>
+                    <p className="text-sm text-text-secondary">Get notified when a route drops below your target price</p>
                 </div>
             </div>
 
@@ -132,27 +132,31 @@ const Watchlists = () => {
                     ) : items.length > 0 ? (
                         <div className="flex flex-col gap-4">
                             {items.map((w) => (
-                                <div key={w.id} className="flex items-center justify-between gap-4 p-4 bg-white/5 rounded-md transition-all duration-300 hover:bg-white/10">
-                                    <div className="flex items-center gap-4">
-                                        <MapPin size={18} className="text-cyan-300" />
-                                        <div>
-                                            <p className="text-white">{w.source_city} → {w.destination_city} <span className="inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold uppercase tracking-wider bg-sky-400/15 text-sky-300 border border-sky-300/40">{w.flight_class}</span></p>
-                                            <p className="text-xs text-white/55">Alert below <span className="font-bold text-emerald-400">₹{w.target_price.toLocaleString('en-IN')}</span></p>
+                                <div key={w.id} className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 bg-white/5 rounded-md transition-all duration-300 hover:bg-white/10">
+                                    <div className="flex items-start sm:items-center gap-4 w-full sm:w-auto">
+                                        <div className="flex shrink-0 items-center justify-center w-10 h-10 rounded-full bg-primary/10 border border-primary/20 text-primary mt-1 sm:mt-0">
+                                            <MapPin size={16} />
+                                        </div>
+                                        <div className="flex-1 min-w-0">
+                                            <p className="text-sm font-semibold text-text-primary mb-1 break-words">{w.source_city} → {w.destination_city} <span className="inline-flex items-center gap-1 px-2 py-0.5 mt-1 sm:mt-0 sm:ml-2 rounded-md text-[10px] font-bold uppercase tracking-wider bg-info/10 text-info border border-info/20 whitespace-nowrap">{w.flight_class}</span></p>
+                                            <p className="text-xs text-text-secondary">Alert below <span className="font-bold text-success">₹{w.target_price.toLocaleString('en-IN')}</span></p>
                                         </div>
                                     </div>
-                                    <button className={btnIcon} onClick={() => handleDelete(w.id)} aria-label="Delete watchlist">
+                                    <button className={`${btnIcon} self-end sm:self-auto`} onClick={() => handleDelete(w.id)} aria-label="Delete watchlist">
                                         <Trash2 size={16} />
                                     </button>
                                 </div>
                             ))}
                         </div>
                     ) : (
-                        <div className="min-h-[400px] flex items-center justify-center">
-                            <div className="text-center max-w-[400px]">
-                                <Bookmark size={48} className="text-white/25 mb-6 mx-auto" />
-                                <h3 className="text-xl font-bold text-white mb-2">No watchlists yet</h3>
-                                <p className="text-sm text-white/55 leading-relaxed">Add a route to track its price</p>
+                        <div className="flex flex-col items-center justify-center text-center p-12 border border-dashed border-border rounded-xl bg-bg-secondary/30 h-[300px]">
+                            <div className="w-16 h-16 rounded-full bg-surface border border-border flex items-center justify-center mb-4 text-text-tertiary shadow-sm">
+                                <Bookmark size={24} />
                             </div>
+                            <h3 className="text-lg font-semibold text-text-primary mb-2">No watchlists yet</h3>
+                            <p className="text-sm text-text-secondary max-w-sm">
+                                Add a route to track its price.
+                            </p>
                         </div>
                     )}
                 </div>

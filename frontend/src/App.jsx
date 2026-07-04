@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Toaster } from 'react-hot-toast';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import AuthLayout from './components/auth/AuthLayout';
@@ -23,16 +23,29 @@ import Alerts from './components/Alerts';
 import Profile from './components/Profile';
 import Sidebar from './components/Sidebar';
 import AccountBar from './components/AccountBar';
-import { Menu, X, Plane } from 'lucide-react';
+import { Menu, X, Plane, ArrowLeft } from 'lucide-react';
 
 function AppShell() {
-    const [activeTab, setActiveTab] = useState('dashboard');
+    const navigate = useNavigate();
+    const location = useLocation();
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [predictionPrefill, setPredictionPrefill] = useState(null);
 
+    // Sync activeTab with URL sub-path, e.g. /dashboard/price-prediction -> 'price-prediction'
+    const pathParts = location.pathname.split('/');
+    const activeTab = pathParts[2] || 'dashboard';
+
+    const setActiveTab = (tabId) => {
+        if (tabId === 'dashboard') {
+            navigate('/dashboard');
+        } else {
+            navigate(`/dashboard/${tabId}`);
+        }
+    };
+
     const goToPrediction = (prefill) => {
         setPredictionPrefill(prefill);
-        setActiveTab('price-prediction');
+        navigate('/dashboard/price-prediction');
     };
 
     const renderContent = () => {
@@ -61,43 +74,86 @@ function AppShell() {
     };
 
     return (
-        <div className="relative min-h-screen lg:h-screen lg:overflow-hidden flex flex-col bg-[url('/Image/sky.jpg')] bg-cover bg-center bg-fixed">
-            <div className="flex items-center justify-between px-6 sm:px-8 py-6 shrink-0">
-                <div className="flex items-center gap-3">
-                    <Plane size={26} className="text-cyan-300 drop-shadow-[0_0_10px_rgba(103,232,249,0.6)]" />
-                    <span
-                        className="text-2xl sm:text-3xl font-extrabold text-cyan-200"
-                        style={{ textShadow: '0 0 16px rgba(103,232,249,0.55), 0 0 2px rgba(255,255,255,0.8)' }}
-                    >
-                        FareLens
-                    </span>
-                </div>
-                <button
-                    className="flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/10 text-white hover:bg-white/20 transition-colors duration-200"
-                    onClick={() => setSidebarOpen(!sidebarOpen)}
-                    aria-label="Toggle sidebar"
-                >
-                    {sidebarOpen ? <X size={20} /> : <Menu size={20} />}
-                </button>
-            </div>
-
-            <div className="flex flex-col lg:flex-row gap-6 px-4 sm:px-6 lg:px-8 pb-6 lg:flex-1 lg:min-h-0">
-                {sidebarOpen && (
-                    <div className="flex flex-col lg:shrink-0 lg:h-full">
-                        <Sidebar
-                            activeTab={activeTab}
-                            setActiveTab={setActiveTab}
-                            onNavigate={() => setSidebarOpen(false)}
-                        />
-                        <AccountBar setActiveTab={setActiveTab} />
-                    </div>
-                )}
-
-                <main className="flex-1 min-w-0 lg:h-full lg:overflow-y-auto">
-                    <div className="rounded-2xl border border-white/15 bg-white/8 backdrop-blur-xl shadow-2xl p-4 sm:p-6 lg:p-8 lg:min-h-full animate-fadeIn">
-                        <div className="max-w-[1600px] mx-auto">
-                            {renderContent()}
+        <div className="relative min-h-screen lg:h-screen lg:overflow-hidden flex bg-bg-primary text-text-primary font-sans">
+            {/* Sidebar (Desktop + Mobile overlay if open) */}
+            {sidebarOpen && (
+                <>
+                    <div className="fixed inset-0 bg-black/60 z-20 lg:hidden backdrop-blur-sm" onClick={() => setSidebarOpen(false)} />
+                    <div className="fixed lg:static inset-y-0 w-[250px] z-30 flex flex-col transition-transform duration-300">
+                        {/* Logo Header */}
+                        <a
+                        href='/'>
+                        <div className="flex items-center justify-between px-10 h-[72px] shrink-0">
+                            <div className="flex items-center gap-3">
+                                <img
+                                    src="/logos/farelens_logo-.png"
+                                    alt="FareLens Logo"
+                                    className="w-10 h-10 mt-1"
+                                />
+                                <span className="text-lg font-bold text-white tracking-wide">
+                                    FareLens
+                                </span>
+                            </div>
+                            <button className="lg:hidden text-text-tertiary hover:text-white" onClick={() => setSidebarOpen(false)}>
+                                <X size={20} />
+                            </button>
                         </div>
+                        </a>
+
+                        {/* Floating Box containing Navigation & Account */}
+                        <div className="flex-1 flex flex-col bg-[#020e1a] border border-border rounded-2xl ml-5 mb-10 mt-5 overflow-hidden">
+                            {/* Sidebar Navigation */}
+                            <div className="flex-1 overflow-y-auto custom-scrollbar">
+                                <Sidebar
+                                    activeTab={activeTab}
+                                    setActiveTab={setActiveTab}
+                                    onNavigate={() => { if (window.innerWidth < 1024) setSidebarOpen(false) }}
+                                />
+                            </div>
+
+                            {/* User Account / Bottom Action */}
+                            <div className="p-3 border-t rounded-2xl    border-border shrink-0">
+                                <AccountBar setActiveTab={setActiveTab} />
+                            </div>
+                        </div>
+                    </div>
+                </>
+            )}
+
+            {/* Main Content Area */}
+            <div className="flex-1 flex flex-col min-w-0 lg:h-full lg:overflow-hidden bg-bg-primary">
+                {/* Top Navigation Bar */}
+                <header className="h-[72px] flex items-center justify-between px-4 md:px-6 lg:px-10 border-b rounded-3xl border-border bg-bg-primary/80 backdrop-blur-md sticky top-0 z-10 shrink-0">
+                    <div className="flex items-center gap-4">
+                        {!sidebarOpen && (
+                            <button
+                                className="flex items-center justify-center w-10 h-10 rounded-lg text-text-secondary hover:text-white hover:bg-surface-hover transition-colors duration-200"
+                                onClick={() => setSidebarOpen(true)}
+                                aria-label="Toggle sidebar"
+                            >
+                                <Menu size={20} />
+                            </button>
+                        )}
+                        <h2 className="text-sm font-medium text-text-secondary capitalize hidden sm:block tracking-wide">
+                            {activeTab.split('-').join(' ')}
+                        </h2>
+                    </div>
+
+                    <div className="flex items-center gap-4">
+                        <Link 
+                            to="/landing" 
+                            className="inline-flex items-center justify-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-xs font-semibold text-text-secondary bg-surface border border-border transition-all duration-200 hover:bg-surface-hover hover:text-text-primary hover:-translate-y-0.5"
+                            aria-label="Back to landing page"
+                        >
+                            <ArrowLeft size={14} />
+                            <span className="hidden sm:inline">Back to landing page</span>
+                        </Link>
+                    </div>
+                </header>
+
+                <main className="flex-1 overflow-y-auto p-4 md:p-6 lg:p-10 scroll-smooth">
+                    <div className="max-w-[1400px] mx-auto animate-fadeIn pb-12 overflow-x-hidden">
+                        {renderContent()}
                     </div>
                 </main>
             </div>
@@ -117,7 +173,7 @@ function LoadingScreen() {
 function PublicOnlyRoute({ children }) {
     const { user, loading } = useAuth();
     if (loading) return <LoadingScreen />;
-    return user ? <Navigate to="/" replace /> : children;
+    return user ? <Navigate to="/dashboard" replace /> : children;
 }
 
 /** Everything else: redirect to /login if not authenticated. */
@@ -157,8 +213,12 @@ function App() {
                     <Route path="/forgot-password" element={<PublicOnlyRoute><AuthLayout><ForgotPassword /></AuthLayout></PublicOnlyRoute>} />
                     <Route path="/reset-password" element={<PublicOnlyRoute><AuthLayout><ResetPassword /></AuthLayout></PublicOnlyRoute>} />
                     <Route path="/verify-email" element={<PublicOnlyRoute><AuthLayout><VerifyEmail /></AuthLayout></PublicOnlyRoute>} />
-                    <Route path="/" element={<HomeRoute />} />
-                    <Route path="/features" element={<FeaturesPage />} />
+                    <Route path="/features" element={<Navigate to="/#features" replace />} />
+                    <Route path="/feature" element={<Navigate to="/#features" replace />} />
+                    <Route path="/landing" element={<LandingPage />} />
+                    <Route path="/dashboard/*" element={<ProtectedRoute><AppShell /></ProtectedRoute>} />
+                    <Route path="/dashboard" element={<ProtectedRoute><AppShell /></ProtectedRoute>} />
+                    <Route path="/" element={<LandingPage />} />
                     <Route path="/working" element={<WorkingPage />} />
                     <Route path="/about" element={<AboutPage />} />
                     <Route path="/*" element={<ProtectedRoute><AppShell /></ProtectedRoute>} />
