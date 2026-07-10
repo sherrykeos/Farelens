@@ -56,9 +56,9 @@ def signup(request: Request, payload: SignupRequest, db: Session = Depends(get_d
     verify_link = f"{FRONTEND_URL}/verify-email?token={token}"
     sent = send_email(
         user.email,
-        "Verify your AirlineML account",
+        "Verify your FareLens account",
         render_branded_email(
-            heading="Welcome to AirlineML 👋",
+            heading="Welcome to FareLens 👋",
             body_lines=[
                 "Thanks for signing up! Click the button below to verify your email "
                 "address and activate your account.",
@@ -157,12 +157,12 @@ def forgot_password(
         reset_link = f"{FRONTEND_URL}/reset-password?token={token}"
         sent = send_email(
             user.email,
-            "Reset your AirlineML password",
+            "Reset your FareLens password",
             render_branded_email(
                 heading="Reset your password",
                 body_lines=[
                     f"Hi{(' ' + user.email.split('@')[0]) if user.email else ''},",
-                    "We got a request to reset the password for your AirlineML account. "
+                    "We got a request to reset the password for your FareLens account. "
                     "Click the button below to choose a new one.",
                 ],
                 cta_text="Reset Password",

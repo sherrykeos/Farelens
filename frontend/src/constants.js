@@ -6,8 +6,8 @@ export const teamDetails = [
         description:"Architected the entire FastAPI backend powering FareLens — REST endpoints for ML inference, Supabase PostgreSQL schema design, JWT-based authentication, Brevo transactional email delivery, PgBouncer connection pooling, and the price-alert background scheduler. Every API response the frontend consumes goes through Sumit's code.",
         tag:"",
         role: "Backend Developer",
-        // image: "/teamImg/SumitImg.jpg",  // real img
-        image: "/teamImg/sumitMeme.jpeg",
+        image: "/teamImg/SumitImg.jpg",  // real img
+        // image: "/teamImg/sumitMeme.jpeg",
         github: "",
         linkedin: "",
         portfolio: "",
@@ -21,8 +21,8 @@ export const teamDetails = [
         description:"Built and trained the XGBoost model at the heart of FareLens — data cleaning, feature engineering on 300K+ real Indian domestic fare records, hyperparameter tuning, cross-validation, and SHAP integration that makes every prediction explainable. The accuracy and reliability of every forecast on this platform is Dolly's work.",
         tag:"",
         role: "ML Developer",
-        // image: "/teamImg/DollyImg.jpeg",   // real img
-        image: "/teamImg/dollyMeme.jpeg",
+        image: "/teamImg/DollyImg.jpeg",   // real img
+        // image: "/teamImg/dollyMeme.jpeg",
         github: "",
         linkedin: "",
         email: "",

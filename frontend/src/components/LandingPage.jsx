@@ -498,7 +498,7 @@ const LandingPage = () => {
           <div className="max-w-2xl">
             {/* Heading */}
             <p className="text-xl sm:text-2xl text-cyan-100/60">Predict. Plan. Save.</p>
-            <h1 className="my-2 mb-5 text-[clamp(2.5rem,6vw,4rem)] font-extrabold leading-tight -tracking-wider text-white">
+            <h1 className="my-2 mb-5 text-[clamp(2rem,6vw,3rem)] font-extrabold leading-tight -tracking-wider text-white">
               Know the Right Time to Fly.
             </h1>
 
