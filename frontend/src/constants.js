@@ -6,11 +6,10 @@ export const teamDetails = [
         description:"Architected the entire FastAPI backend powering FareLens — REST endpoints for ML inference, Supabase PostgreSQL schema design, JWT-based authentication, Brevo transactional email delivery, PgBouncer connection pooling, and the price-alert background scheduler. Every API response the frontend consumes goes through Sumit's code.",
         tag:"",
         role: "Backend Developer",
-        image: "/teamImg/SumitImg.jpg",  // real img
-        // image: "/teamImg/sumitMeme.jpeg",
-        github: "",
-        linkedin: "",
-        portfolio: "",
+        image: "/teamImg/SumitImg.jpg", 
+        github: "https://github.com/sumitDev11",
+        linkedin: "https://www.linkedin.com/in/sumit-kumar-64484a2b2/",
+        portfolio: "https://sumitkumar-website.vercel.app/",
         email: "",
         
     },
@@ -21,10 +20,10 @@ export const teamDetails = [
         description:"Built and trained the XGBoost model at the heart of FareLens — data cleaning, feature engineering on 300K+ real Indian domestic fare records, hyperparameter tuning, cross-validation, and SHAP integration that makes every prediction explainable. The accuracy and reliability of every forecast on this platform is Dolly's work.",
         tag:"",
         role: "ML Developer",
-        image: "/teamImg/DollyImg.jpeg",   // real img
-        // image: "/teamImg/dollyMeme.jpeg",
-        github: "",
-        linkedin: "",
+        image: "/teamImg/DollyImg.jpeg",   
+        github: "https://github.com/dolly-bit",
+        linkedin: "https://www.linkedin.com/in/dolly-kumari-61a2b634a/",
+         portfolio: "https://dolly06-portfolio.vercel.app/",
         email: "",
         
     },
@@ -36,8 +35,9 @@ export const teamDetails = [
         tag:"",
         role: "Frontend Developer",
         image: "/teamImg/sherryImg.jpeg",
-        github: "",
-        linkedin: "",
+        github: "https://github.com/sherrykeos",
+        linkedin: "https://www.linkedin.com/in/sharad--kumar/",
+         portfolio: "https://sherryk.dev",
         email: "",
         
     }

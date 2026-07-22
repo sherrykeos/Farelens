@@ -23,11 +23,11 @@ const Navbar = () => {
   return (
     <header
       className={`fixed z-50 transition-all duration-300 ${scrolled
-          ? "top-0 left-0 right-0 sm:top-5 sm:left-30 sm:right-30 bg-white/5 sm:bg-white/5 backdrop-blur-xl border-b sm:border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] sm:rounded-4xl "
-          : "top-0 left-0 right-0 bg-transparent border-b border-transparent"
+          ? "top-0 left-0 right-0 sm:top-4 sm:left-30 sm:right-30 bg-white/5 sm:bg-white/5 backdrop-blur-xl border-b sm:border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.1)] sm:rounded-4xl "
+          : "top-2 left-0 right-0 bg-transparent border-b border-transparent"
         }`}
     >
-      <div className="max-w-300 mx-auto flex items-center justify-between px-4 sm:px-8 h-19">
+      <div className="max-w-300 mx-auto flex items-center justify-between px-4 sm:px-8 h-15">
         <Link to="/" className="flex items-center gap-3">
           <img
             src="/logos/farelens_logo-.png"
@@ -50,7 +50,7 @@ const Navbar = () => {
             to="/working"
             className="change-on-hover hover-to-scale transition-colors duration-300"
           >
-            It's Working
+            Workflow
           </Link>
           <Link
             to="/about"
