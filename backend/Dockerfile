@@ -3,9 +3,10 @@ FROM python:3.11-slim
 WORKDIR /app
 
 COPY requirements.txt .
-RUN pip install --no-cache-dir \
-    fastapi uvicorn[standard] pydantic-settings httpx \
-    pandas numpy scikit-learn xgboost joblib
+RUN pip install --no-cache-dir -r requirements.txt
+# RUN pip install --no-cache-dir \
+#     fastapi uvicorn[standard] pydantic-settings httpx \
+#     pandas numpy scikit-learn xgboost joblib
 
 COPY app/ app/
 EXPOSE 8000
