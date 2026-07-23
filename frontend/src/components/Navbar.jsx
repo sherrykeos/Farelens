@@ -28,7 +28,7 @@ const Navbar = () => {
         }`}
     >
       <div className="max-w-300 mx-auto flex items-center justify-between px-4 sm:px-8 h-15">
-        <Link to="/" className="flex items-center gap-3">
+        <a href="/" className="flex items-center gap-3">
           <img
             src="/logos/farelens_logo-.png"
             alt="FareLens Logo"
@@ -37,7 +37,7 @@ const Navbar = () => {
           <span className="text-xl ml-1 font-extrabold text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]">
             FareLens
           </span>
-        </Link>
+        </a>
 
         <nav className="hidden sm:flex items-center gap-10 text-sm font-medium text-white drop-shadow-[0_1px_2px_rgba(0,0,0,0.3)]">
           <a
@@ -118,28 +118,28 @@ const Navbar = () => {
           <a
             href="/#features"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-white font-medium text-lg px-2 py-2 hover:bg-white/5 rounded-lg"
+            className="text-white font-medium text-sm px-2 py-2 hover:bg-white/5 rounded-lg"
           >
             Features
           </a>
           <Link
             to="/working"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-white font-medium text-lg px-2 py-2 hover:bg-white/5 rounded-lg"
+            className="text-white font-medium text-sm px-2 py-2 hover:bg-white/5 rounded-lg"
           >
-            It's Working
+            Workflow
           </Link>
           <Link
             to="/about"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-white font-medium text-lg px-2 py-2 hover:bg-white/5 rounded-lg"
+            className="text-white font-medium text-sm px-2 py-2 hover:bg-white/5 rounded-lg"
           >
             About Us
           </Link>
           <Link
             to="/dashboard"
             onClick={() => setMobileMenuOpen(false)}
-            className="text-white font-medium text-lg px-2 py-2 hover:bg-white/5 rounded-lg"
+            className="text-white font-medium text-sm px-2 py-2 hover:bg-white/5 rounded-lg"
           >
             Dashboard
           </Link>

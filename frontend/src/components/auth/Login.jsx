@@ -29,7 +29,7 @@ const Login = () => {
   return (
     <div className="fixed w-full h-full z-10 flex flex-col justify-center items-center lg:items-end bg-[url('/Image/authImg2.jpg')] bg-cover bg-center">  
         
-      <div className="flex flex-col items-center gap-6 w-full px-4 sm:px-0 lg:mr-45 lg:w-auto">
+      <div className="flex flex-col items-center gap-6 mt-[-100px] md:mt-0 w-full px-4 sm:px-0 lg:mr-45 lg:w-auto">
 
         <a
         href="/"
@@ -40,8 +40,7 @@ const Login = () => {
       </a>
 
       <div
-        className="relative z-10 w-full shadow-2xl"
-        style={{ maxWidth: 480 }}
+        className="relative z-10 w-full shadow-2xl max-w-[340px] sm:max-w-[480px]"
       >
         <div
           className="absolute inset-0 pointer-events-none"
@@ -57,28 +56,28 @@ const Login = () => {
           }}
         />
         <div
-          className="relative w-full p-8 sm:p-14 text-white backdrop-blur-xl"
+          className="relative w-full p-6 sm:p-14 text-white backdrop-blur-xl"
           style={{
             borderRadius: 13,
             background: "rgba(212, 212, 212, 0.10)",
           }}
         >
-          <p className="text-center mb-1 text-lg tracking-wider">FareLens</p>
-          <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2">
+          <p className="text-center mb-1 text-base sm:text-lg tracking-wider">FareLens</p>
+          <h1 className="text-3xl sm:text-5xl font-bold text-center mb-2">
             Welcome back
           </h1>
-          <p className="text-base text-white/70 text-center mb-10">
+          <p className="text-sm sm:text-base text-white/70 text-center mb-10">
             Please Enter Your Detail
           </p>
 
           <form onSubmit={handleSubmit} className="flex flex-col gap-7">
             <div>
-              <label className="block text-base font-semibold mb-2">
+              <label className="block text-sm sm:text-base font-semibold mb-2">
                 E-mail
               </label>
               <input
                 type="email"
-                className="w-full bg-transparent border-b border-white/40 pb-3 text-lg text-white placeholder-white/40 focus:outline-none focus:border-white"
+                className="w-full bg-transparent border-b border-white/40 pb-3 text-base sm:text-lg text-white placeholder-white/40 focus:outline-none focus:border-white"
                 placeholder="Enter Your E-mail Address"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
@@ -87,12 +86,12 @@ const Login = () => {
               />
             </div>
             <div>
-              <label className="block text-base font-semibold mb-2">
+              <label className="block text-sm sm:text-base font-semibold mb-2">
                 Password
               </label>
               <input
                 type={showPassword ? "text" : "password"}
-                className="w-full bg-transparent border-b border-white/40 pb-3 text-lg text-white placeholder-white/40 focus:outline-none focus:border-white"
+                className="w-full bg-transparent border-b border-white/40 pb-3 text-base sm:text-lg text-white placeholder-white/40 focus:outline-none focus:border-white"
                 placeholder="Enter your password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
@@ -124,7 +123,7 @@ const Login = () => {
             <button
               type="submit"
               disabled={loading}
-              className="mx-auto mt-2 px-12 py-3.5 rounded-full border border-white/50 text-lg text-white font-semibold hover:bg-white/10 transition-colors duration-300"
+              className="mx-auto mt-2 px-12 py-3.5 rounded-full border border-white/50 text-base sm:text-lg text-white font-semibold hover:bg-white/10 transition-colors duration-300"
             >
               {loading ? "Logging in..." : "Log In"}
             </button>

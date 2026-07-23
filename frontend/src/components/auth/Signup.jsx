@@ -44,7 +44,7 @@ const Signup = () => {
     return (
         <div className="fixed w-full h-full z-10 flex flex-col justify-center items-center lg:items-end bg-[url('/Image/authImg2.jpg')] bg-cover bg-center">
             
-            <div className="flex flex-col items-center gap-6 w-full px-4 sm:px-0 lg:mr-45 lg:w-auto">
+            <div className="flex flex-col items-center mt-[-100px] md:mt-0 gap-6 w-full px-4 sm:px-0 lg:mr-45 lg:w-auto">
 
             <a
                 href="/"
@@ -54,7 +54,7 @@ const Signup = () => {
                 Back to landing page
             </a>
 
-            <div className="relative z-10 w-full shadow-2xl" style={{ maxWidth: 480 }}>
+            <div className="relative z-10 w-full shadow-2xl max-w-[340px] sm:max-w-[480px]">
                 {/* Gradient ring only — masked so the center is fully cut out, instead of a
                     solid gradient div sitting behind the translucent content (which would
                     show through the 10%-opacity fill as a flat gray wash). */}
@@ -70,17 +70,17 @@ const Signup = () => {
                     }}
                 />
                 <div
-                    className="relative w-full p-6 sm:p-10 text-white backdrop-blur-xl"
+                    className="relative w-full p-5 sm:p-10 text-white backdrop-blur-xl"
                     style={{
                         borderRadius: 13,
                         background: 'rgba(212, 212, 212, 0.10)',
                     }}
                 >
-                    <p className="text-center mb-1 text-lg tracking-wider">FareLens</p>
-                    <h1 className="text-4xl sm:text-5xl font-bold text-center mb-2">
+                    <p className="text-center mb-1 text-base sm:text-lg tracking-wider">FareLens</p>
+                    <h1 className="text-3xl sm:text-5xl font-bold text-center mb-2">
                         Create account
                     </h1>
-                    <p className="text-base text-white/70 text-center mb-10">
+                    <p className="text-sm sm:text-base text-white/70 text-center mb-10">
                         Please enter your details
                     </p>
 
@@ -89,7 +89,7 @@ const Signup = () => {
                             <label className="block text-sm font-semibold mb-1">Name</label>
                             <input
                                 type="text"
-                                className="w-full bg-transparent border-b border-white/40 pb-2 text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
+                                className="w-full bg-transparent border-b border-white/40 pb-2 text-sm sm:text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
                                 placeholder="Enter Your Full Name"
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
@@ -101,7 +101,7 @@ const Signup = () => {
                             <label className="block text-sm font-semibold mb-1">E-mail</label>
                             <input
                                 type="email"
-                                className="w-full bg-transparent border-b border-white/40 pb-2 text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
+                                className="w-full bg-transparent border-b border-white/40 pb-2 text-sm sm:text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
                                 placeholder="Enter Your E-mail Address"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -112,7 +112,7 @@ const Signup = () => {
                             <label className="block text-sm font-semibold mb-1">Password</label>
                             <input
                                 type={showPassword ? 'text' : 'password'}
-                                className="w-full bg-transparent border-b border-white/40 pb-2 text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
+                                className="w-full bg-transparent border-b border-white/40 pb-2 text-sm sm:text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
                                 placeholder="Create a password"
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
@@ -124,7 +124,7 @@ const Signup = () => {
                             <label className="block text-sm font-semibold mb-1">Confirm password</label>
                             <input
                                 type={showPassword ? 'text' : 'password'}
-                                className="w-full bg-transparent border-b border-white/40 pb-2 text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
+                                className="w-full bg-transparent border-b border-white/40 pb-2 text-sm sm:text-base text-white placeholder-white/40 focus:outline-none focus:border-white"
                                 placeholder="Re-enter your password"
                                 value={confirmPassword}
                                 onChange={(e) => setConfirmPassword(e.target.value)}
@@ -147,7 +147,7 @@ const Signup = () => {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="mx-auto mt-2 px-12 py-3.5 rounded-full border border-white/50 text-lg text-white font-semibold hover:bg-white/10 transition-colors duration-300"
+                            className="mx-auto mt-2 px-12 py-3.5 rounded-full border border-white/50 text-base sm:text-lg text-white font-semibold hover:bg-white/10 transition-colors duration-300"
                         >
                             {loading ? 'Creating account...' : 'Create Account'}
                         </button>

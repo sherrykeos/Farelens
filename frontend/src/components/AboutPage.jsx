@@ -218,11 +218,11 @@ const AboutPage = () => (
       }}
     >
       <div
+        className="grid-cols-1 md:grid-cols-[1fr_1fr]"
         style={{
           maxWidth: 1100,
           margin: "0 auto",
           display: "grid",
-          gridTemplateColumns: "1fr 1fr",
           gap: "4rem",
           alignItems: "center",
         }}

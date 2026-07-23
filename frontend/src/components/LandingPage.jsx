@@ -317,7 +317,7 @@ const InteractiveFeatureShowcase = () => {
   const ActiveIcon = FEATURES_LIST[active].Icon;
 
   return (
-    <section id="features" className="relative overflow-hidden py-20 px-4 sm:px-8 bg-[#030712]">
+    <section id="features" className="relative overflow-hidden py-12 sm:py-20 px-4 sm:px-8 bg-[#030712]">
       {/* Background Orbs */}
       <motion.div
         animate={{
@@ -328,12 +328,12 @@ const InteractiveFeatureShowcase = () => {
       />
 
       <div className="relative z-10 mx-auto max-w-6xl">
-        <div className="mb-14 text-center">
-            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-[11px] font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md">
+        <div className="mb-10 sm:mb-14 text-center">
+            <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
               Intelligence Suite
             </span>
-            <h2 className="text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-tight text-white leading-tight">
+            <h2 className="text-[clamp(1.5rem,5vw,2.5rem)] sm:text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-tight text-white leading-tight">
               Everything you need to <br className="sm:hidden" />
               <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
                 predict smarter.
@@ -446,11 +446,11 @@ const InteractiveFeatureShowcase = () => {
                 <div className="relative z-10 mt-auto">
                   <Link
                     to="/working"
-                    className="inline-flex items-center gap-2 rounded-lg px-5 py-2.5 text-sm font-bold text-white transition-all duration-300 hover:scale-105"
+                    className="inline-flex items-center gap-2 rounded-lg px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white transition-all duration-300 hover:scale-105"
                     style={{ background: FEATURES_LIST[active].color, boxShadow: `0 6px 16px ${FEATURES_LIST[active].color}40` }}
                   >
                     Learn how it works
-                    <ArrowRight size={14} />
+                    <ArrowRight size={14} className="w-3 h-3 sm:w-[14px] sm:h-[14px]" />
                   </Link>
                 </div>
               </motion.div>
@@ -486,7 +486,7 @@ const LandingPage = () => {
       {/* ══════════════════════════════════════════
                 HERO — full-width background image
             ══════════════════════════════════════════ */}
-      <section className="relative flex h-screen items-center overflow-hidden bg-[url(/Image/Backgroundimage.jpg)] bg-cover bg-[position:65%_center] sm:bg-right-center bg-no-repeat">
+   <section id="heroSection"  className="relative flex h-screen items-center overflow-hidden bg-[url(/Image/Backgroundimage.jpg)] bg-cover bg-[position:65%_center] sm:bg-right-center bg-no-repeat">
         {/* Dark overlay: solid black on left, fades to transparent on right */}
 
         <div className="absolute inset-0 bg-gradient-to-r from-[#050a14] from-30% via-[rgba(5,10,20,0.85)] via-48% to-transparent" />
@@ -498,12 +498,12 @@ const LandingPage = () => {
           <div className="max-w-2xl">
             {/* Heading */}
             <p className="text-xl sm:text-2xl text-cyan-100/60">Predict. Plan. Save.</p>
-            <h1 className="my-2 mb-5 text-[clamp(2rem,6vw,3rem)] font-extrabold leading-tight -tracking-wider text-white">
+            <h1 className="my-2 mb-5 text-[clamp(1.75rem,5vw,3rem)] font-extrabold leading-tight -tracking-wider text-white">
               Know the Right Time to Fly.
             </h1>
 
             {/* Subtitle */}
-            <p className="mb-20 max-w-xl text-base leading-relaxed text-white">
+            <p className="mb-20 max-w-xl text-sm md:text-base leading-relaxed text-white">
               AI-powered flight price predictions, fare calendars, and smart
               alerts that help you book at the right time and never overpay
               again.
@@ -514,7 +514,7 @@ const LandingPage = () => {
               {/* Primary */}
               <Link
                 to="/register"
-                className="inline-block rounded-2xl bg-gradient-to-r from-cyan-500 to-sky-600 px-9 py-4 font-bold text-white no-underline shadow-lg transition-all duration-200"
+                className="inline-block rounded-2xl bg-gradient-to-r from-cyan-500 to-sky-600 px-6 py-3 md:px-9 md:py-4 font-bold text-white no-underline shadow-lg transition-all duration-200"
                 style={{ boxShadow: "0 6px 22px rgba(6,182,212,0.45)" }}
                 onMouseEnter={(e) => {
                   e.currentTarget.style.transform = "translateY(-2px)";
@@ -533,7 +533,7 @@ const LandingPage = () => {
               {/* Secondary */}
               <Link
                 to="/working"
-                className="inline-flex items-center gap-2.5 rounded-2xl border border-white/30 bg-white/5 px-6 py-4 font-semibold text-white no-underline transition-colors duration-200"
+                className="inline-flex items-center gap-2.5 rounded-2xl border border-white/30 bg-white/5 px-6 py-3 md:px-6 md:py-4 font-semibold text-white no-underline transition-colors duration-200"
                 onMouseEnter={(e) => {
                   e.currentTarget.style.background = "rgba(255,255,255,0.12)";
                   e.currentTarget.style.borderColor = "rgba(255,255,255,0.4)";
@@ -557,7 +557,7 @@ const LandingPage = () => {
                 {AVATARS.map((av, i) => (
                   <div
                     key={i}
-                    className="relative flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-full border-[2.5px] border-[rgba(4,8,18,0.9)] text-xs font-bold text-white"
+                    className="relative flex h-8 w-8 md:h-10 md:w-10 flex-shrink-0 items-center justify-center rounded-full border-[2.5px] border-[rgba(4,8,18,0.9)] text-xs font-bold text-white"
                     style={{
                       background: av.bg,
                       marginLeft: i > 0 ? -12 : 0,
@@ -596,7 +596,7 @@ const LandingPage = () => {
         <a
           //   href="#features"
           aria-label="Scroll down"
-          className="absolute bottom-14 left-1/2 z-[2] flex -translate-x-1/2 flex-col items-center gap-1 text-white/50 transition-colors duration-300 ease-in-out animate-bounce"
+          className="absolute bottom-20 md:bottom-14 left-1/2 z-[2] flex -translate-x-1/2 flex-col items-center gap-1 text-white/50 transition-colors duration-300 ease-in-out animate-bounce"
           onMouseEnter={(e) => {
             e.currentTarget.style.color = "rgba(255, 255, 255, 0.9)";
           }}
@@ -629,12 +629,12 @@ const LandingPage = () => {
 
         <div className="relative z-[1] mx-auto max-w-5xl">
           {/* Badge + Heading */}
-          <div className="mb-14 text-center">
-            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md">
+          <div className="mb-10 sm:mb-14 text-center">
+            <span className="mb-4 inline-flex items-center gap-2 rounded-full border border-sky-500/30 bg-sky-500/10 px-3 sm:px-3.5 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-sky-400 backdrop-blur-md">
               <span className="inline-block h-1.5 w-1.5 rounded-full bg-sky-400 shadow-[0_0_8px_rgba(56,189,248,0.8)]" />
               Live App Preview
             </span>
-            <h2 className="mb-3 text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-tight text-white leading-tight">
+            <h2 className="mb-3 text-[clamp(1.5rem,5vw,2.5rem)] sm:text-[clamp(1.8rem,3vw,2.5rem)] font-extrabold tracking-tight text-white leading-tight">
               Glimpses of the{" "}
               <span className="bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400 bg-clip-text text-transparent">
                 Dashboard
@@ -686,11 +686,11 @@ const LandingPage = () => {
       <section className="relative py-12 px-4 sm:px-8 bg-[#030712]">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-cyan-900/10 to-transparent pointer-events-none" />
         <div className="relative mx-auto max-w-6xl">
-          <div className="text-center mb-10">
-            <h2 className="text-[clamp(1.3rem,2.5vw,2rem)] font-extrabold tracking-tight text-white mb-3">
+          <div className="text-center mb-8 sm:mb-10">
+            <h2 className="text-[clamp(1.25rem,4vw,2rem)] sm:text-[clamp(1.3rem,2.5vw,2rem)] font-extrabold tracking-tight text-white mb-3">
               Built on <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-sky-400">hundreds</span> of data points.
             </h2>
-            <p className="text-sm text-slate-400 max-w-xl mx-auto">
+            <p className="text-xs sm:text-sm text-slate-400 max-w-xl mx-auto px-4 sm:px-0">
               We process massive amounts of flight data daily to ensure our AI models are the most accurate in the industry.
             </p>
           </div>
@@ -709,10 +709,10 @@ const LandingPage = () => {
                 {/* Hover Glow */}
                 <div className="absolute inset-0 bg-gradient-to-b from-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/10 group-hover:to-transparent transition-all duration-500" />
                 
-                <div className="relative z-10 mb-2 text-3xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 group-hover:to-cyan-200 transition-colors duration-500">
+                <div className="relative z-10 mb-1 sm:mb-2 text-2xl sm:text-4xl font-extrabold tracking-tight text-transparent bg-clip-text bg-gradient-to-b from-white to-white/50 group-hover:to-cyan-200 transition-colors duration-500">
                   {stat}
                 </div>
-                <div className="relative z-10 whitespace-pre-line text-xs text-center font-medium leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors duration-500">
+                <div className="relative z-10 whitespace-pre-line text-[10px] sm:text-xs text-center font-medium leading-relaxed text-slate-400 group-hover:text-slate-300 transition-colors duration-500">
                   {label}
                 </div>
               </div>
@@ -724,35 +724,35 @@ const LandingPage = () => {
       {/* ══════════════════════════════════════════
                 CTA BANNER
             ══════════════════════════════════════════ */}
-      <section className="relative py-16 px-4 sm:px-8 bg-[#030712] overflow-hidden">
+      <section className="relative py-12 sm:py-16 px-4 sm:px-8 bg-[#030712] overflow-hidden">
         <div className="relative mx-auto max-w-4xl">
-          <div className="relative rounded-[2.5rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_0_80px_rgba(6,182,212,0.1)] p-10 sm:p-14 text-center">
+          <div className="relative rounded-3xl sm:rounded-[2.5rem] overflow-hidden bg-[#0A101D] border border-white/10 shadow-[0_0_80px_rgba(6,182,212,0.1)] p-8 sm:p-14 text-center">
             {/* Massive background glows inside the card */}
             <div className="absolute -top-32 -left-32 w-72 h-72 bg-cyan-500/30 rounded-full blur-[80px] pointer-events-none" />
             <div className="absolute -bottom-32 -right-32 w-72 h-72 bg-indigo-500/20 rounded-full blur-[80px] pointer-events-none" />
             
             <div className="relative z-10">
-              <span className="inline-block mb-4 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3.5 py-1 text-[11px] font-bold uppercase tracking-widest text-cyan-400 backdrop-blur-md">
+              <span className="inline-block mb-3 sm:mb-4 rounded-full border border-cyan-500/30 bg-cyan-500/10 px-3 sm:px-3.5 py-1 text-[10px] sm:text-[11px] font-bold uppercase tracking-widest text-cyan-400 backdrop-blur-md">
                 No credit card required
               </span>
               
-              <h2 className="mb-5 text-[clamp(2rem,4vw,3.5rem)] font-extrabold tracking-tight text-white leading-none">
+              <h2 className="mb-4 sm:mb-5 text-[clamp(1.75rem,5vw,3.5rem)] sm:text-[clamp(2rem,4vw,3.5rem)] font-extrabold tracking-tight text-white leading-none">
                 Stop guessing. <br />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-400 to-indigo-400">Start predicting.</span>
               </h2>
               
-              <p className="mx-auto mb-8 max-w-lg text-base text-slate-400 leading-relaxed">
+              <p className="mx-auto mb-6 sm:mb-8 max-w-lg text-sm sm:text-base text-slate-400 leading-relaxed">
                 Join thousands of smart travelers who never overpay for flights. Run the live AI model on any route in seconds.
               </p>
               
               <Link
                 to="/register"
-                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-8 py-3.5 text-base font-bold text-[#0d1116] shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all hover:scale-105 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
+                className="group relative inline-flex items-center gap-2 overflow-hidden rounded-full bg-white px-6 py-3 sm:px-8 sm:py-3.5 text-sm sm:text-base font-bold text-[#0d1116] shadow-[0_0_30px_rgba(255,255,255,0.25)] transition-all hover:scale-105 hover:shadow-[0_0_50px_rgba(255,255,255,0.4)]"
               >
                 <span className="relative z-10">Get Started for Free</span>
                 <ArrowRight
-                  size={18}
-                  className="relative z-10 transition-transform group-hover:translate-x-1"
+                  size={16}
+                  className="sm:w-[18px] sm:h-[18px] relative z-10 transition-transform group-hover:translate-x-1"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-cyan-100 to-white opacity-0 transition-opacity group-hover:opacity-100" />
               </Link>

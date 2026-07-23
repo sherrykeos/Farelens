@@ -94,9 +94,6 @@ function AppShell() {
                                     FareLens
                                 </span>
                             </div>
-                            <button className="lg:hidden text-text-tertiary hover:text-white" onClick={() => setSidebarOpen(false)}>
-                                <X size={20} />
-                            </button>
                         </div>
                         </a>
 
