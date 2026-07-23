@@ -62,37 +62,36 @@ def render_branded_email(
     cta_html = ""
     if cta_text and cta_url:
         cta_html = f"""
-        <div style="text-align:center;margin:28px 0;">
+        <div style="text-align:center;margin:32px 0;">
           <a href="{cta_url}"
-             style="display:inline-block;background:#6366f1;color:#ffffff;text-decoration:none;
-                    font-weight:600;font-size:15px;padding:14px 32px;border-radius:8px;">
+             style="display:inline-block;background:#2563eb;color:#ffffff;text-decoration:none;
+                    font-weight:600;font-size:15px;padding:14px 32px;border-radius:8px;
+                    box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.2), 0 2px 4px -1px rgba(37, 99, 235, 0.1);">
             {cta_text}
           </a>
         </div>
-        <p style="margin:0 0 16px;color:#94a3b8;font-size:13px;line-height:1.5;word-break:break-all;">
-          Or copy this link: <a href="{cta_url}" style="color:#6366f1;">{cta_url}</a>
-        </p>
         """
 
     footnote_html = ""
     if footnote:
-        footnote_html = f'<p style="margin:24px 0 0;color:#94a3b8;font-size:13px;line-height:1.5;">{footnote}</p>'
+        footnote_html = f'<p style="margin:24px 0 0;color:#64748b;font-size:13px;line-height:1.5;border-top:1px solid #e2e8f0;padding-top:20px;">{footnote}</p>'
 
     return f"""
-    <div style="background:#0f172a;padding:40px 16px;font-family:-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif;">
-      <div style="max-width:480px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;">
-        <div style="background:linear-gradient(135deg,#6366f1,#8b5cf6);padding:28px 32px;">
-          <span style="color:#ffffff;font-size:20px;font-weight:700;">✈️ AirlineML</span>
+    <div style="background:#f1f5f9;padding:40px 16px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;">
+      <div style="max-width:480px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+        <div style="background:linear-gradient(135deg,#1e40af,#3b82f6);padding:18px;text-align:center;">
+          <span style="color:#ffffff;font-size:24px;font-weight:700;letter-spacing:-0.5px;">FareLens</span>
         </div>
-        <div style="padding:32px;">
-          <h1 style="margin:0 0 20px;color:#0f172a;font-size:20px;font-weight:700;">{heading}</h1>
+        <div style="padding:40px 32px;">
+          <h1 style="margin:0 0 20px;color:#1e293b;font-size:22px;font-weight:700;">{heading}</h1>
           {body_html}
           {cta_html}
           {footnote_html}
         </div>
-        <div style="background:#f8fafc;padding:20px 32px;text-align:center;">
-          <p style="margin:0;color:#94a3b8;font-size:12px;">
-            AirlineML Dynamic Pricing &middot; This is an automated message, please don't reply.
+        <div style="background:#f8fafc;padding:24px 32px;text-align:center;border-top:1px solid #f1f5f9;">
+          <p style="margin:0;color:#94a3b8;font-size:12px;line-height:1.6;">
+            <strong>FareLens</strong> &middot; Smarter Travel Insights<br>
+            This is an automated message, please don't reply directly to this email.
           </p>
         </div>
       </div>
